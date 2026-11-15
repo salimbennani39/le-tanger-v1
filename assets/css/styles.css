@@ -32,7 +32,7 @@ body[data-tone="dusk"]{--bg:#3A2219;--fg:#F6E7D3;--fg-soft:#D7BDA2;--rule:rgba(2
 body[data-tone="night"]{--bg:var(--night);--fg:#F3E6D4;--fg-soft:#C3AE98;--rule:rgba(243,230,212,.15)}
 .ground-dark{--fg:#F3E6D4;--fg-soft:#C9B39B;--rule:rgba(243,230,212,.16);background:var(--night);color:var(--fg)}
 .ground-dusk{--fg:#F6E7D3;--fg-soft:#D9BFA4;--rule:rgba(246,231,211,.18);background:var(--dusk);color:var(--fg)}
-.ground-paper{background:var(--paper)}
+.ground-paper{--fg:var(--ink);--fg-soft:var(--ink-soft);--rule:var(--line);background:var(--paper);color:var(--fg)}
 
 /* type */
 .display{font-family:var(--f-display);font-weight:400;line-height:.98;letter-spacing:-.015em;text-wrap:balance;margin:0}
