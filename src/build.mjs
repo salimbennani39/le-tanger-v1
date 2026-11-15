@@ -244,7 +244,7 @@ const conciergeServices = [
 const conciergeTeaser = () => `
 <section class="sec ground-paper" id="conciergerie">
   <div class="wrap">
-    <div class="split-head"><div><p class="eyebrow rv">Conciergerie</p><h2 class="display d-l rv rv-d1">Tanger, <em>on s’occupe du reste.</em></h2></div>
+    <div class="split-head"><div><p class="eyebrow rv">Conciergerie</p><h2 class="display d-l rv rv-d1">Tanger, <em>on s’occupe de vous.</em></h2></div>
     <div><p class="lead rv rv-d2">Une table au port, un transfert depuis l’aéroport, une excursion à Chefchaouen, un dîner privé : demandez, nous organisons. Un service inclus dans votre séjour.</p>
     <a class="btn btn-line rv rv-d3" style="margin-top:2rem" href="${P}conciergerie.html">Découvrir la conciergerie ${icon.arrow}</a></div></div>
     <ul class="svc-chips rv">${conciergeServices.map(([t]) => `<li>${t}</li>`).join('')}</ul>
@@ -579,7 +579,7 @@ const occasions = [
   ['Saint-Valentin', 'Une nuit à deux face à la mer, une chambre décorée pour l’occasion.', 'deco-valentin', 'suitepool-palms', 'call'],
   ['Nuit de noces', 'La première nuit, dans une suite ou un penthouse, décorée pour vous accueillir.', 'deco-pink', 'penthouse-1', 'call'],
   ['Baby shower', 'Un après-midi doux pour célébrer l’arrivée du bébé, entre amis et en famille, dans l’un de nos appartements.', 'ph2-2', 'apt2-4', 'Nous écrire'],
-  ['Bridal shower', 'Avant le grand jour, une fête entre amis dans un appartement lumineux, avec vue sur la mer.', 'penthouse-3', 'apt2-1', 'Nous écrire'],
+  ['Bridal shower', 'Avant le grand jour, une fête entre amis dans un appartement lumineux, avec vue sur la mer.', 'penthouse-salon', 'apt2-1', 'Nous écrire'],
 ];
 const occasionRow = ([t, d, a, b, cta]) => `<article class="ritem" id="${t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, '-')}">
         <div class="ritem-media"><div class="frame clipin">${img(a, t, { sizes: '(max-width:860px) 70vw, 40vw' })}</div><div class="frame clipin">${img(b, t, { sizes: '(max-width:860px) 30vw, 16vw' })}</div></div>
@@ -680,7 +680,7 @@ page('conciergerie.html', {
   title: 'Conciergerie · Le Tanger', current: 'conciergerie.html', ogImg: 'drone-sunset',
   desc: 'Dîners privés, réservations de restaurants, transferts aéroport, excursions, spa et hammam : la conciergerie de Le Tanger organise votre séjour à Tanger. Service inclus.',
   body: () => `
-${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au coucher du soleil', eyebrow: 'Conciergerie', title: 'Tanger, <em>on s’occupe du reste.</em>', lead: 'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous organisons.' })}
+${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au coucher du soleil', eyebrow: 'Conciergerie', title: 'Tanger, <em>on s’occupe de vous.</em>', lead: 'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous organisons.' })}
 <section class="sec">
   <div class="wrap">
     <div class="split-head"><div><p class="eyebrow rv">Inclus dans votre séjour</p><h2 class="display d-l rv rv-d1">Un seul message, <em>tout est organisé.</em></h2></div><p class="lead rv rv-d2">Notre conciergerie connaît Tanger par cœur. Elle réserve, organise et confirme pour vous, sans frais : le service est compris dans le prix de votre logement.</p></div>
