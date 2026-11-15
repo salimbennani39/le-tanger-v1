@@ -5,8 +5,8 @@
   --ember:#A3482A; --ember-2:#C2643A; --gold:#E8B27A; --gold-soft:#F2CFA3;
   --dusk:#3A2219; --night:#15100C; --night-2:#1F1712;
   --bg:var(--sand); --fg:var(--ink); --fg-soft:var(--ink-soft); --rule:var(--line);
-  --f-display:"Instrument Serif", "Times New Roman", serif;
-  --f-text:"Geist", system-ui, -apple-system, sans-serif;
+  --f-display:"Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --f-text:"Jost", "Futura", "Century Gothic", system-ui, sans-serif;
   --ease:cubic-bezier(.23,1,.32,1);
   --gutter:clamp(20px,5vw,72px);
   --max:1360px;
@@ -505,3 +505,16 @@ p{text-wrap:pretty;max-width:62ch}
 @keyframes dpUp{from{transform:translateY(100%)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){.dp{animation:none}}
 @media (max-width:719px){.dp-open .wa{opacity:0;pointer-events:none}}
+
+/* single typeface: Jost (free Futura-style sans, close to the Louis Vuitton house font) */
+.display{font-weight:300;letter-spacing:-.025em;line-height:1.02}
+.d-xl{font-size:clamp(2.5rem,6vw,5.8rem)}
+.d-l{font-size:clamp(2rem,4.2vw,3.9rem)}
+.d-m{font-size:clamp(1.7rem,2.9vw,2.6rem);line-height:1.08}
+.card h3,.duo h3,.room-facts b,.carte h3,.sig h4,.faq summary,.steps h3,.clist a,.dp-title,.menu nav a,.price b{font-weight:300;letter-spacing:-.01em}
+.card h3{font-size:clamp(1.35rem,1.7vw,1.6rem)}
+.duo h3{font-size:clamp(1.6rem,2.5vw,2.3rem)}
+.room-facts b,.carte h3{font-size:1.6rem}
+.sig h4{font-size:1.3rem}
+.dp-title{font-size:1.25rem}
+body{font-weight:400;letter-spacing:.005em}

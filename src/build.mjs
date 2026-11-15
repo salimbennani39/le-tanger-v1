@@ -69,7 +69,7 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <meta property="og:locale" content="fr_FR">
 <link rel="icon" href="${P}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${P}assets/css/styles.css">
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Hotel', name: site.full, address: { '@type': 'PostalAddress', streetAddress: "M'nar Palm", addressLocality: 'Tanger', postalCode: '90000', addressCountry: 'MA' }, telephone: site.phone, email: site.email, url: 'https://letanger.com', checkinTime: '15:00', checkoutTime: '12:00' })}</script>
 </head>
