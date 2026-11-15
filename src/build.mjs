@@ -4,8 +4,12 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, rooms, drinks, faq, breakfast } from './data.mjs';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+/* cache-busting: a new version tag whenever the CSS or JS changes, so browsers never show an old stylesheet */
+const hash8 = f => createHash('md5').update(readFileSync(join(ROOT, f))).digest('hex').slice(0, 8);
+const VER = { css: hash8('src/assets/css/styles.css'), js: hash8('src/assets/js/main.js') };
 const LOGO = readFileSync(join(ROOT, 'src/logo-inline.svg'), 'utf8');
 cpSync(join(ROOT, 'src/assets/css'), join(ROOT, 'assets/css'), { recursive: true });
 cpSync(join(ROOT, 'src/assets/js'), join(ROOT, 'assets/js'), { recursive: true });
@@ -51,6 +55,7 @@ const NAV = [
   ['pool-day.html', 'Pool Day'],
   ['le-feu.html', 'Le Feu'],
   ['celebrations.html', 'Célébrations & événements'],
+  ['collection-telephones.html', 'Collection'],
   ['galerie.html', 'Galerie'],
 ];
 const MORE = [['a-propos.html', 'Le lieu'], ['contact.html', 'Contact'], ['blog.html', 'Journal']];
@@ -77,7 +82,7 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <link rel="icon" href="${P}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${P}assets/css/styles.css">
+<link rel="stylesheet" href="${P}assets/css/styles.css?v=${VER.css}">
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Hotel', name: site.full, address: { '@type': 'PostalAddress', streetAddress: "M'nar Palm", addressLocality: 'Tanger', postalCode: '90000', addressCountry: 'MA' }, telephone: site.phone, email: site.email, url: 'https://letanger.com', checkinTime: '15:00', checkoutTime: '12:00' })}</script>
 </head>
 <body data-tone="day">
@@ -105,7 +110,7 @@ ${footer()}
 <a class="wa" href="${site.whatsapp}" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">${icon.wa}</a>
 ${tones ? '<div class="sun" aria-hidden="true"><div class="clip"><div class="disc"></div></div><div class="hz"></div><div class="t">après-midi</div></div>' : ''}
 <div class="lb" role="dialog" aria-modal="true" aria-label="Galerie"><button class="lb-x" aria-label="Fermer">×</button><button class="lb-p" aria-label="Photo précédente">${icon.left}</button><img alt=""><button class="lb-n" aria-label="Photo suivante">${icon.arrow}</button></div>
-<script src="${P}assets/js/main.js" defer></script>
+<script src="${P}assets/js/main.js?v=${VER.js}" defer></script>
 </body>
 </html>`;
 }
@@ -613,7 +618,7 @@ page('collection-telephones.html', {
   title: 'Collection privée de téléphones · Le Tanger', current: 'collection-telephones.html', ogImg: 'phone-onyx',
   desc: 'Des téléphones muraux à manivelle aux cadrans des années 1950 : la collection privée de téléphones anciens exposée à la réception de Le Tanger.',
   body: () => `
-${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée', title: 'Une histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de réception.' })}
+${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée — Khalid Bennani', title: 'Une histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de réception.' })}
 <section class="sec">
   <div class="wrap phones-head" style="margin-bottom:0">
     <div>

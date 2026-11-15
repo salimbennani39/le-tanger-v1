@@ -567,3 +567,14 @@ body{font-weight:400;letter-spacing:.005em}
   .phone-facts div{padding-right:12px;margin-right:12px}
   .timeline{grid-template-columns:1fr 1fr}
 }
+/* space between the phone stories, so photos never touch */
+.phone-story{margin-top:clamp(56px,8vw,120px)}
+.phone-story .feature-media{min-height:clamp(340px,52vw,720px)}
+.timeline li{padding-right:8px}
+.phone-facts dd{white-space:nowrap}
+@media (max-width:860px){.phone-facts dd{white-space:normal}}
+/* six menu items: keep each on one line, tighten on mid-size screens, burger below 1180px */
+.nav a{white-space:nowrap}
+@media (max-width:1400px){.nav{gap:clamp(14px,1.5vw,24px)}.nav a{letter-spacing:.09em;font-size:.76rem}}
+@media (max-width:1320px){.sunset{display:none}}
+@media (max-width:1180px){.nav{display:none}.burger{display:flex}}
