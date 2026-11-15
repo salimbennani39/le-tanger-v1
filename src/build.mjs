@@ -131,6 +131,7 @@ function footer() {
       <div><h4>Découvrir</h4><ul>
         <li><a href="${P}a-propos.html">Le lieu</a></li>
         <li><a href="${P}galerie.html">Galerie</a></li>
+        <li><a href="${P}collection-telephones.html">Collection de téléphones</a></li>
         <li><a href="${P}blog.html">Journal</a></li>
         <li><a href="${P}contact.html">Contact</a></li>
         <li>${book('Réserver en ligne', '')}</li></ul></div>
@@ -219,7 +220,7 @@ const phonesSection = (cls = '') => `
   <div class="wrap">
     <div class="phones-head">
       <div><p class="eyebrow rv">Dans le salon de réception</p><h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
-      <p class="lead rv rv-d2" style="margin-top:1.6rem">Des appareils à manivelle aux cadrans des années 1950, une collection réunie au fil des années et exposée à la réception. Demandez-nous de vous en raconter l’histoire.</p></div>
+      <p class="lead rv rv-d2" style="margin-top:1.6rem">Des appareils à manivelle aux cadrans des années 1950, une collection réunie au fil des années et exposée à la réception. Demandez-nous de vous en raconter l’histoire.</p><a class="btn btn-line rv rv-d3" style="margin-top:2rem" href="${P}collection-telephones.html">Découvrir la collection ${icon.arrow}</a></div>
       <div class="frame clipin phones-hero">${img('phone-sculpture', 'La collection de téléphones dans le salon de réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
     </div>
     <div class="phones">${phones.map(([im, era, t, d], k) => `<article class="rv rv-d${k}"><div class="frame">${img(im, t, { sizes: '(max-width:860px) 100vw, 33vw' })}</div><p class="eyebrow">${era}</p><h3>${t}</h3><p class="muted">${d}</p></article>`).join('')}</div>
@@ -578,6 +579,73 @@ ${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de ros
   </div>
 </section>
 ${closing('Parlons <em>de votre séjour.</em>', 'Appelez-nous ou écrivez-nous sur WhatsApp avec l’occasion, la date et vos envies.')}`,
+});
+
+/* COLLECTION PRIVEE DE TELEPHONES */
+const phoneStories = [
+  {
+    im: 'phone-magneto', era: 'Fin du XIXe – début du XXe siècle', title: 'Le téléphone mural <em>à manivelle.</em>',
+    paras: [
+      'Le plus ancien de la collection. Une caisse en bois accrochée au mur, deux sonneries en métal sur le dessus, un cornet pour parler et un écouteur que l’on décroche pour écouter.',
+      'Pas encore de cadran. Pour appeler, on tournait la manivelle : elle actionnait une petite génératrice, la « magnéto », qui faisait sonner le central. Une opératrice, l’une des « demoiselles du téléphone », répondait, demandait le nom du correspondant et branchait la communication à la main, fiche par fiche.',
+    ],
+    facts: [['Usage', 'Mural'], ['Appel', 'Manivelle et opératrice'], ['Matière', 'Bois et métal']],
+  },
+  {
+    im: 'phone-bakelite', era: 'Années 1950', title: 'Le téléphone de bureau <em>à cadran.</em>',
+    paras: [
+      'Avec le cadran rotatif, l’abonné compose lui-même son numéro : le central automatique remplace peu à peu l’opératrice. À Paris, le premier central automatique ouvre en 1928, et il faudra attendre 1979 pour que tout le réseau français fonctionne sans opératrice.',
+      'Les touches alignées à l’avant permettaient de passer d’une ligne à l’autre ou de mettre un appel en attente. Un appareil de bureau, lourd et robuste, pensé pour durer des décennies.',
+    ],
+    facts: [['Usage', 'Bureau'], ['Appel', 'Cadran rotatif'], ['Particularité', 'Touches de ligne']],
+  },
+  {
+    im: 'phone-onyx', era: 'Années 1960 – 1970', title: 'Le téléphone <em>en onyx et laiton.</em>',
+    paras: [
+      'Un clin d’œil à la Belle Époque : le combiné repose sur une fourche en laiton, comme sur les appareils du début du siècle, mais il cache un cadran moderne derrière une façade en onyx veiné.',
+      'Ces modèles d’apparat étaient faits pour être vus. Ils trônaient sur une console ou un bureau, autant objets de décoration que téléphones.',
+    ],
+    facts: [['Usage', 'Salon'], ['Appel', 'Cadran rotatif'], ['Matière', 'Onyx et laiton']],
+  },
+];
+
+page('collection-telephones.html', {
+  title: 'Collection privée de téléphones · Le Tanger', current: 'collection-telephones.html', ogImg: 'phone-onyx',
+  desc: 'Des téléphones muraux à manivelle aux cadrans des années 1950 : la collection privée de téléphones anciens exposée à la réception de Le Tanger.',
+  body: () => `
+${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée', title: 'Une histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de réception.' })}
+<section class="sec">
+  <div class="wrap phones-head" style="margin-bottom:0">
+    <div>
+      <p class="eyebrow rv">Dans le salon de réception</p>
+      <h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
+      <p class="lead rv rv-d2" style="margin-top:1.6rem">Sur les étagères en bois de la réception, chaque appareil raconte une étape de l’histoire du téléphone : l’époque des opératrices, l’arrivée du cadran, puis les modèles de salon. Prenez le temps de les regarder en arrivant, et demandez-nous de vous en raconter l’histoire.</p>
+    </div>
+    <div class="frame clipin phones-hero">${img('phone-sculpture', 'Sculpture en laiton et téléphones anciens dans le salon de réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
+  </div>
+</section>
+${phoneStories.map((x, k) => `<section class="feature${k % 2 ? ' rev' : ''} phone-story">
+  <div class="feature-media">${img(x.im, x.title.replace(/<[^>]+>/g, ''), { sizes: '(max-width:860px) 100vw, 55vw', par: 0.08 })}</div>
+  <div class="feature-copy">
+    <p class="eyebrow rv">${String(k + 1).padStart(2, '0')} · ${x.era}</p>
+    <h2 class="display d-l rv rv-d1">${x.title}</h2>
+    ${x.paras.map((t, j) => `<p class="rv rv-d${j + 2}" style="margin-top:${j ? '1rem' : '1.6rem'}">${t}</p>`).join('')}
+    <dl class="phone-facts rv rv-d3">${x.facts.map(([a, b]) => `<div><dt>${a}</dt><dd>${b}</dd></div>`).join('')}</dl>
+  </div>
+</section>`).join('')}
+<section class="sec ground-paper">
+  <div class="wrap">
+    <p class="eyebrow rv">Repères</p>
+    <h2 class="display d-l rv rv-d1" style="margin-bottom:clamp(40px,5vw,72px)">Du central manuel <em>au cadran.</em></h2>
+    <ol class="timeline">
+      <li class="rv"><b class="num">1876</b><span>Alexander Graham Bell dépose le brevet du téléphone.</span></li>
+      <li class="rv rv-d1"><b class="num">1879</b><span>Ouverture du premier central téléphonique à Paris. Les communications passent par des opératrices.</span></li>
+      <li class="rv rv-d2"><b class="num">1928</b><span>Premier central automatique à Paris : l’abonné compose lui-même son numéro au cadran.</span></li>
+      <li class="rv rv-d3"><b class="num">1979</b><span>Le réseau français devient entièrement automatique. Fin de l’époque des opératrices.</span></li>
+    </ol>
+  </div>
+</section>
+${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposée dans le salon de réception, ouvert à nos hôtes pendant leur séjour.')}`,
 });
 
 /* GALERIE */
