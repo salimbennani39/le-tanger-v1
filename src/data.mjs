@@ -36,28 +36,28 @@ const privatePool = ['Piscine privée sur terrasse'];
 
 export const rooms = [
   {
-    slug: 'penthouse-piscine-privee-bloc-3',
+    slug: 'penthouse-piscine-privee-pavillon-3',
     hover: 'penthouse-salon',
-    title: 'Penthouse', sub: 'Piscine privée · Bloc 3',
+    title: 'Penthouse', sub: 'Piscine privée · Pavillon 3',
     tags: ['piscine', 'mer', 'famille'],
     surface: 120, beds: '1 lit double + 2 lits simples', baths: 2, guests: '4 à 6',
     hook: 'Le joyau de la résidence : une piscine suspendue et une terrasse plein ciel face à la Méditerranée.',
     body: [
       "Un penthouse d'exception avec une piscine privée suspendue et une vue panoramique sur la Méditerranée. Sa vaste terrasse à ciel ouvert offre un cadre exclusif, pour des moments de détente en famille ou entre amis.",
-      "Deux chambres (un lit double et deux lits simples), deux salles de bain, un salon lumineux, une cuisine moderne et des finitions haut de gamme. Situé dans le 3e bloc, il offre une vue complète sur la piscine, le jardin et la mer. Il accueille 4 à 6 personnes.",
+      "Deux chambres (un lit double et deux lits simples), deux salles de bain, un salon lumineux, une cuisine moderne et des finitions haut de gamme. Situé dans le pavillon 3, il offre une vue complète sur la piscine, le jardin et la mer. Il accueille 4 à 6 personnes.",
     ],
     imgs: ['penthouse-1', 'penthouse-2', 'penthouse-3', 'penthouse-4', 'penthouse-5', 'penthouse-6', 'penthouse-7', 'penthouse-8'],
     amen: [...privatePool, ...kitchen, ...common],
   },
   {
-    slug: 'penthouse-piscine-privee-bloc-2',
+    slug: 'penthouse-piscine-privee-pavillon-2',
     cover: 'ph2-2', hover: 'ph2-1',
-    title: 'Penthouse', sub: 'Piscine privée · Bloc 2',
+    title: 'Penthouse', sub: 'Piscine privée · Pavillon 2',
     tags: ['piscine', 'mer', 'famille'],
     surface: 120, beds: '1 lit double + 2 lits simples', baths: 2, guests: '4 à 6',
     hook: 'Une terrasse plein ciel, sa piscine privée et la Méditerranée à l’horizon.',
     body: [
-      "Un penthouse panoramique avec piscine privée, dans le 2e bloc de la résidence. Sa terrasse ouverte sur les collines et la mer offre un cadre exclusif, en famille ou entre amis.",
+      "Un penthouse panoramique avec piscine privée, dans le pavillon 2 de la résidence. Sa terrasse ouverte sur les collines et la mer offre un cadre exclusif, en famille ou entre amis.",
       "Deux chambres (un lit double et deux lits simples), deux salles de bain, un grand salon baigné de lumière, une cuisine moderne et des finitions haut de gamme. Il accueille 4 à 6 personnes.",
     ],
     imgs: ['ph2-1', 'ph2-2', 'ph2-4', 'ph2-3', 'ph2-6', 'ph2-5', 'ph2-7'],

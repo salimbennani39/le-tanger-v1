@@ -731,3 +731,6 @@ for (const p of pages) {
 console.log(`built ${pages.length} pages`);
 
 writeFileSync(join(ROOT, 'evenements.html'), '<!doctype html><meta charset="utf-8"><title>Événements · Le Tanger</title><meta http-equiv="refresh" content="0; url=celebrations.html#evenements"><link rel="canonical" href="celebrations.html#evenements"><a href="celebrations.html#evenements">Célébrations & événements</a>');
+
+/* old penthouse URLs (bloc) keep working */
+for (const n of [2, 3]) writeFileSync(join(ROOT, `residences/penthouse-piscine-privee-bloc-${n}.html`), `<!doctype html><meta charset="utf-8"><title>Penthouse · Le Tanger</title><meta http-equiv="refresh" content="0; url=penthouse-piscine-privee-pavillon-${n}.html"><link rel="canonical" href="penthouse-piscine-privee-pavillon-${n}.html"><a href="penthouse-piscine-privee-pavillon-${n}.html">Penthouse piscine privée · Pavillon ${n}</a>`);
