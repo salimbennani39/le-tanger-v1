@@ -226,9 +226,9 @@ const phonesSection = (cls = '') => `
 <section class="sec ${cls}" id="telephones">
   <div class="wrap">
     <div class="phones-head">
-      <div><p class="eyebrow rv">Dans le salon de réception</p><h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
+      <div><p class="eyebrow rv">Dans le salon de la réception</p><h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
       <p class="lead rv rv-d2" style="margin-top:1.6rem">Des appareils à manivelle aux cadrans des années 1950, une collection réunie au fil des années et exposée à la réception. Demandez-nous de vous en raconter l’histoire.</p><a class="btn btn-line rv rv-d3" style="margin-top:2rem" href="${P}collection-telephones.html">Découvrir la collection ${icon.arrow}</a></div>
-      <div class="frame clipin phones-hero">${img('phone-sculpture', 'La collection de téléphones dans le salon de réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
+      <div class="frame clipin phones-hero">${img('phone-sculpture', 'La collection de téléphones dans le salon de la réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
     </div>
     <div class="phones">${phones.map(([im, era, t, d], k) => `<article class="rv rv-d${k}"><div class="frame">${img(im, t, { sizes: '(max-width:860px) 100vw, 33vw' })}</div><p class="eyebrow">${era}</p><h3>${t}</h3><p class="muted">${d}</p></article>`).join('')}</div>
   </div>
@@ -640,15 +640,15 @@ page('collection-telephones.html', {
   title: 'Collection privée de téléphones · Le Tanger', current: 'collection-telephones.html', ogImg: 'phone-onyx',
   desc: 'Des téléphones muraux à manivelle aux cadrans des années 1950 : la collection privée de téléphones anciens exposée à la réception de Le Tanger.',
   body: () => `
-${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée — Khalid Bennani', title: 'Histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de réception.' })}
+${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée — Khalid Bennani', title: 'Histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de la réception.' })}
 <section class="sec">
   <div class="wrap phones-head" style="margin-bottom:0">
     <div>
-      <p class="eyebrow rv">Dans le salon de réception</p>
+      <p class="eyebrow rv">Dans le salon de la réception</p>
       <h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
       <p class="lead rv rv-d2" style="margin-top:1.6rem">Sur les étagères en bois de la réception, chaque appareil raconte une étape de l’histoire du téléphone : l’époque des opératrices, l’arrivée du cadran, puis les modèles de salon. La collection est ouverte à tous, résidents comme visiteurs : passez la voir, et demandez-nous de vous en raconter l’histoire.</p>
     </div>
-    <div class="frame clipin phones-hero">${img('phone-sculpture', 'Sculpture en laiton et téléphones anciens dans le salon de réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
+    <div class="frame clipin phones-hero">${img('phone-sculpture', 'Sculpture en laiton et téléphones anciens dans le salon de la réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
   </div>
 </section>
 ${phoneStories.map((x, k) => `<section class="feature${k % 2 ? ' rev' : ''} phone-story">
@@ -672,7 +672,7 @@ ${phoneStories.map((x, k) => `<section class="feature${k % 2 ? ' rev' : ''} phon
     </ol>
   </div>
 </section>
-${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposée dans le salon de réception et ouverte à tous, que vous séjourniez chez nous ou non. Passez la voir, nous serons ravis de vous la faire découvrir.')}`,
+${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposée dans le salon de la réception et ouverte à tous, que vous séjourniez chez nous ou non. Passez la voir, nous serons ravis de vous la faire découvrir.')}`,
 });
 
 /* CONCIERGERIE */
@@ -737,8 +737,8 @@ ${pageHero({ media: 'drone-dusk-1', video: 'dusk-coast.mp4', alt: 'La côte au c
     <div class="mosaic mosaic-land">
       <div class="frame m1 clipin">${img('drone-pool', 'La résidence et sa piscine vues du ciel', { sizes: '(max-width:860px) 100vw, 58vw' })}</div>
       <div class="frame m2 clipin">${img('ext-entree', "L'entrée de la résidence le soir", { sizes: '(max-width:860px) 60vw, 40vw' })}</div>
-      <div class="frame m3 clipin">${img('ext-phone', 'Détail du salon de réception', { sizes: '(max-width:860px) 40vw, 33vw' })}</div>
-      <div class="frame m4 clipin">${img('ext-lounge-1', 'Le salon de réception', { sizes: '(max-width:860px) 100vw, 50vw' })}</div>
+      <div class="frame m3 clipin">${img('ext-phone', 'Détail du salon de la réception', { sizes: '(max-width:860px) 40vw, 33vw' })}</div>
+      <div class="frame m4 clipin">${img('ext-lounge-1', 'Le salon de la réception', { sizes: '(max-width:860px) 100vw, 50vw' })}</div>
     </div>
   </div>
 </section>
