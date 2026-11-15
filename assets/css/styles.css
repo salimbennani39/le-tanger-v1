@@ -597,3 +597,4 @@ body{font-weight:400;letter-spacing:.005em}
   .svc-strip{grid-template-columns:1fr}
   .svc-strip .frame:nth-child(n){margin-top:0}
 }
+@media (max-width:1220px){.nav{display:none}.burger{display:flex}}

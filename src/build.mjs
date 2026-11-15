@@ -55,6 +55,7 @@ const NAV = [
   ['pool-day.html', 'Pool Day'],
   ['le-feu.html', 'Le Feu'],
   ['celebrations.html', 'Célébrations & événements'],
+  ['conciergerie.html', 'Conciergerie'],
   ['collection-telephones.html', 'Collection'],
   ['galerie.html', 'Galerie'],
 ];
