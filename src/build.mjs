@@ -273,7 +273,7 @@ page('index.html', {
   <div class="feature-media">${img('pool-8333', 'Piscine à débordement au coucher du soleil', { sizes: '(max-width:860px) 100vw, 55vw', par: 0.1 })}</div>
   <div class="feature-copy">
     <p class="eyebrow rv">Pool Day · mai à septembre</p>
-    <h2 class="display d-l rv rv-d1">Une journée au bord de <em>l'infini.</em></h2>
+    <h2 class="display d-l rv rv-d1">Une journée au bord de <em>l’eau.</em></h2>
     <p class="lead rv rv-d2">Nos deux piscines à débordement vous accueillent de 10h jusqu'au coucher du soleil. Transat et serviette inclus, réservation par téléphone, WhatsApp ou sur place.</p>
     <div class="price rv rv-d2"><div><b class="num">350</b><span>MAD · adulte</span></div><div><b class="num">200</b><span>MAD · enfant</span></div></div>
     <div class="rv rv-d3"><a class="btn btn-primary" href="${P}pool-day.html">Découvrir le Pool Day</a></div>
@@ -441,7 +441,7 @@ page('pool-day.html', {
   title: 'Pool Day · Le Tanger', current: 'pool-day.html', ogImg: 'pool-8333',
   desc: 'Pool Day à Tanger : deux piscines à débordement face à la mer, de 10h au coucher du soleil, de mai à septembre. 350 MAD adulte, 200 MAD enfant.',
   body: () => `
-${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', eyebrow: 'Pool Day · mai à septembre', title: 'Une journée <em>au bord de l’infini.</em>', lead: "Deux piscines à débordement face à la mer, de 10h jusqu'au coucher du soleil." })}
+${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', eyebrow: 'Pool Day · mai à septembre', title: 'Une journée <em>au bord de l’eau.</em>', lead: "Deux piscines à débordement face à la mer, de 10h jusqu'au coucher du soleil." })}
 <section class="sec">
   <div class="wrap grid-2" style="align-items:start">
     <div>
