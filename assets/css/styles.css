@@ -518,3 +518,15 @@ p{text-wrap:pretty;max-width:62ch}
 .sig h4{font-size:1.3rem}
 .dp-title{font-size:1.25rem}
 body{font-weight:400;letter-spacing:.005em}
+
+/* galerie: every photo at its own shape (landscape stays landscape), columns still staggered */
+/* aspect ratio set inline per photo */
+.stagger img{height:100%}
+@media (max-width:860px){.gal .g-3{grid-column:1/-1;aspect-ratio:3/2}}
+/* le lieu: four landscape photos, offset so edges never line up */
+.mosaic-land .frame{aspect-ratio:3/2!important;align-self:start!important}
+.mosaic-land .m1{grid-column:1/8!important}
+.mosaic-land .m2{grid-column:8/13!important;margin-top:clamp(40px,8vw,120px)}
+.mosaic-land .m3{grid-column:2/7!important}
+.mosaic-land .m4{grid-column:7/13!important;margin-top:clamp(24px,4vw,60px)}
+@media (max-width:860px){.mosaic-land .m1,.mosaic-land .m2,.mosaic-land .m3,.mosaic-land .m4{grid-column:1/13!important;margin-top:0}}

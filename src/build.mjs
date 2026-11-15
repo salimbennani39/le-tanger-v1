@@ -16,6 +16,14 @@ let P = ''; // relative prefix for current page
 const img = (name, alt, { sizes = '100vw', eager = false, par = null, cls = '' } = {}) =>
   `<img src="${P}assets/img/${name}-1200.webp" srcset="${P}assets/img/${name}-1200.webp 1200w, ${P}assets/img/${name}-2400.webp 2400w" sizes="${sizes}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"${par ? ` data-par="${par}"` : ''}${cls ? ` class="${cls}"` : ''}>`;
 const full = name => `${P}assets/img/${name}-2400.webp`;
+/* real pixel size of a webp, so gallery tiles keep each photo's own shape */
+const webpSize = name => {
+  const b = readFileSync(join(ROOT, `assets/img/${name}-1200.webp`));
+  const t = b.toString('ascii', 12, 16);
+  if (t === 'VP8X') return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+  if (t === 'VP8L') { const v = b.readUInt32LE(21); return [1 + (v & 0x3fff), 1 + ((v >> 14) & 0x3fff)]; }
+  return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+};
 const icon = {
   arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></svg>',
   left: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>',
@@ -309,10 +317,10 @@ page('index.html', {
 
 <section class="sec" data-tone-section="dusk">
   <div class="wrap">
-    <div class="split-head"><div><p class="eyebrow rv">Vos moments</p><h2 class="display d-l rv rv-d1">Pour les jours <em>qui comptent.</em></h2></div><p class="lead rv rv-d2">Un anniversaire, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower, une séance de yoga au lever du jour.</p></div>
+    <div class="split-head"><div><p class="eyebrow rv">Vos moments</p><h2 class="display d-l rv rv-d1">Pour les jours <em>qui comptent.</em></h2></div><p class="lead rv rv-d2">Un anniversaire, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower.</p></div>
     <div class="duo">
       <a href="${P}celebrations.html#celebrations" class="rv"><div class="frame">${img('celebration-balloons', 'Ballons sur la piscine au coucher du soleil', { sizes: '(max-width:860px) 100vw, 50vw' })}</div><h3>Célébrations</h3><p class="muted">Nous décorons votre chambre pour l'occasion.</p></a>
-      <a href="${P}celebrations.html#evenements" class="rv rv-d2 duo-b"><div class="frame">${img('ph2-2', 'Salon lumineux d’un penthouse', { sizes: '(max-width:860px) 100vw, 50vw' })}</div><h3>Événements</h3><p class="muted">Baby shower, bridal shower, yoga.</p></a>
+      <a href="${P}celebrations.html#evenements" class="rv rv-d2 duo-b"><div class="frame">${img('ph2-2', 'Salon lumineux d’un penthouse', { sizes: '(max-width:860px) 100vw, 50vw' })}</div><h3>Événements</h3><p class="muted">Baby shower, bridal shower.</p></a>
     </div>
   </div>
 </section>
@@ -469,7 +477,7 @@ ${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', 
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="gal" data-gallery>
-      ${[['pool-1', 'g-wide'], ['pool-5', 'g-2'], ['pool-salon', 'g-3'], ['pool-3', 'g-3'], ['drone-pool', 'g-wide'], ['pool-2', 'g-2']].map(([n, c]) => `<button class="${c} clipin" data-full="${full(n)}" aria-label="Agrandir la photo">${img(n, 'Les piscines de Le Tanger', { sizes: '(max-width:860px) 50vw, 40vw' })}</button>`).join('')}
+      ${[['pool-1', 'g-wide'], ['pool-5', 'g-2'], ['pool-salon', 'g-3'], ['pool-dusk-3', 'g-3'], ['drone-pool', 'g-wide'], ['pool-2', 'g-2']].map(([n, c]) => `<button class="${c} clipin" data-full="${full(n)}" aria-label="Agrandir la photo">${img(n, 'Les piscines de Le Tanger', { sizes: '(max-width:860px) 50vw, 40vw' })}</button>`).join('')}
     </div>
   </div>
 </section>
@@ -573,7 +581,6 @@ const occasions = [
   ['Nuit de noces', 'La première nuit, dans une suite ou un penthouse, décorée pour vous accueillir.', 'deco-pink', 'penthouse-1', 'call'],
   ['Baby shower', 'Un après-midi doux pour célébrer l’arrivée de bébé, entre amies et en famille, dans l’un de nos appartements.', 'ph2-2', 'apt2-4', 'Nous écrire'],
   ['Bridal shower', 'Avant le grand jour, une fête entre amies dans un appartement lumineux, avec vue sur la mer.', 'penthouse-3', 'apt2-1', 'Nous écrire'],
-  ['Yoga', 'Nous accueillons des séances de yoga animées par un studio partenaire, qui apporte son propre matériel, dans l’espace du café. Sur demande, selon disponibilité.', 'cafe-1', 'ext-garden', 'Demander une date'],
 ];
 const occasionRow = ([t, d, a, b, cta]) => `<article class="ritem" id="${t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, '-')}">
         <div class="ritem-media"><div class="frame clipin">${img(a, t, { sizes: '(max-width:860px) 70vw, 40vw' })}</div><div class="frame clipin">${img(b, t, { sizes: '(max-width:860px) 30vw, 16vw' })}</div></div>
@@ -584,23 +591,22 @@ const occasionRow = ([t, d, a, b, cta]) => `<article class="ritem" id="${t.toLow
 
 page('celebrations.html', {
   title: 'Célébrations & événements · Le Tanger', current: 'celebrations.html', ogImg: 'deco-red',
-  desc: 'Anniversaire, Saint-Valentin, nuit de noces, baby shower, bridal shower, yoga : célébrez et réunissez vos proches à Le Tanger.',
+  desc: 'Anniversaire, Saint-Valentin, nuit de noces, baby shower, bridal shower : célébrez et réunissez vos proches à Le Tanger.',
   body: () => `
-${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de roses', eyebrow: 'Célébrations & événements', title: 'Pour les jours <em>qui comptent.</em>', lead: 'Une chambre décorée pour l’occasion, une fête entre amies dans un appartement, une séance de yoga dans l’espace du café. Dites-nous ce que vous préparez, nous nous occupons du reste.' })}
+${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de roses', eyebrow: 'Célébrations & événements', title: 'Pour les jours <em>qui comptent.</em>', lead: 'Une chambre décorée pour l’occasion, une fête entre amies dans un appartement. Dites-nous ce que vous préparez, nous nous occupons du reste.' })}
 <section class="sec">
   <div class="wrap">
     <div class="split-head" id="celebrations"><div><p class="eyebrow">Célébrations</p><h2 class="display d-l">Votre chambre, <em>décorée pour l’occasion.</em></h2></div><p class="lead">Fleurs, pétales de roses, bougies, ballons et gâteau. Tout est prêt à votre arrivée. Appelez-nous avec l’occasion, la date et vos envies.</p></div>
     <div class="rlist">
       ${occasions.slice(0, 3).map(occasionRow).join('')}
     </div>
-    <div class="split-head" id="evenements" style="margin-top:clamp(110px,14vw,200px)"><div><p class="eyebrow">Événements</p><h2 class="display d-l">Réunir ceux <em>qu’on aime.</em></h2></div><p class="lead">Baby shower et bridal shower dans nos appartements, séances de yoga dans l’espace du café.</p></div>
+    <div class="split-head" id="evenements" style="margin-top:clamp(110px,14vw,200px)"><div><p class="eyebrow">Événements</p><h2 class="display d-l">Réunir ceux <em>qu’on aime.</em></h2></div><p class="lead">Baby shower et bridal shower, dans nos appartements lumineux face à la mer.</p></div>
     <div class="rlist">
       ${occasions.slice(3).map(occasionRow).join('')}
     </div>
-    <p class="note" style="margin-top:4rem">L’image du yoga montre le projet du Tanger Café, qui ouvre prochainement.</p>
   </div>
 </section>
-${closing('Parlons <em>de votre projet.</em>', 'Appelez-nous ou écrivez-nous sur WhatsApp avec l’occasion, la date et vos envies.')}`,
+${closing('Parlons <em>de votre séjour.</em>', 'Appelez-nous ou écrivez-nous sur WhatsApp avec l’occasion, la date et vos envies.')}`,
 });
 
 /* GALERIE */
@@ -610,7 +616,7 @@ page('galerie.html', {
   desc: 'Les résidences, les piscines, le feu et la lumière de Tanger en images.',
   body: () => `
 ${pageHero({ media: 'drone-pool-clean', alt: 'La résidence et ses piscines vues du ciel', eyebrow: 'Galerie', title: 'Voyage <em>en images.</em>', short: true })}
-<section class="sec"><div class="wrap">${[3, 2].map(cols => `<div class="stagger s${cols}" data-gallery>${[...Array(cols).keys()].map(c => `<div class="st-col">${galleryList.map((n, k) => [n, k]).filter(([, k]) => k % cols === c).map(([n, k]) => `<button data-full="${full(n)}" class="rv r${k % 5}" aria-label="Agrandir la photo">${img(n, 'Le Tanger', { sizes: cols === 3 ? '33vw' : '50vw' })}</button>`).join('')}</div>`).join('')}</div>`).join('')}</div></section>
+<section class="sec"><div class="wrap">${[3, 2].map(cols => `<div class="stagger s${cols}" data-gallery>${[...Array(cols).keys()].map(c => `<div class="st-col">${galleryList.map((n, k) => [n, k]).filter(([, k]) => k % cols === c).map(([n, k]) => `<button data-full="${full(n)}" class="rv r${k % 5}" style="aspect-ratio:${webpSize(n).join('/')}" aria-label="Agrandir la photo">${img(n, 'Le Tanger', { sizes: cols === 3 ? '33vw' : '50vw' })}</button>`).join('')}</div>`).join('')}</div>`).join('')}</div></section>
 ${closing()}`,
 });
 
@@ -628,7 +634,7 @@ ${pageHero({ media: 'drone-dusk-1', video: 'dusk-coast.mp4', alt: 'La côte au c
 </section>
 <section class="sec" style="padding-top:0">
   <div class="wrap">
-    <div class="mosaic">
+    <div class="mosaic mosaic-land">
       <div class="frame m1 clipin">${img('drone-pool', 'La résidence et sa piscine vues du ciel', { sizes: '(max-width:860px) 100vw, 58vw' })}</div>
       <div class="frame m2 clipin">${img('ext-entree', "L'entrée de la résidence le soir", { sizes: '(max-width:860px) 60vw, 40vw' })}</div>
       <div class="frame m3 clipin">${img('ext-phone', 'Détail du salon de réception', { sizes: '(max-width:860px) 40vw, 33vw' })}</div>
