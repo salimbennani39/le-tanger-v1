@@ -509,11 +509,11 @@ ${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', 
   </div>
 </section>
 <section class="sec ground-paper">
-  <div class="wrap">
-    <h2 class="display d-l" style="margin-bottom:clamp(40px,5vw,72px)">Comment ça marche.</h2>
-    <div class="steps">
-      <div class="rv"><h3>Réservez</h3><p>Par téléphone, sur WhatsApp ou directement à l'accueil. Les transats ne se réservent pas : ils sont attribués à l'arrivée.</p></div>
-      <div class="rv rv-d1"><h3>Arrivez</h3><p>À partir de 10h00. Pas de code vestimentaire, pas d'âge minimum : venez en famille.</p></div>
+  <div class="wrap how">
+    <h2 class="display d-l rv">Comment <em>ça marche.</em></h2>
+    <div class="steps steps-side">
+      <div class="rv"><h3>Réservez</h3><p>Par téléphone, sur WhatsApp ou directement à l'accueil. Les transats ne se réservent pas&nbsp;: ils sont attribués à l'arrivée.</p></div>
+      <div class="rv rv-d1"><h3>Arrivez</h3><p>À partir de 10h00. Pas de code vestimentaire, pas d'âge minimum&nbsp;: venez en famille.</p></div>
       <div class="rv rv-d2"><h3>Restez</h3><p>Jusqu'au coucher du soleil. Le pass se règle sur place, à l'arrivée.</p></div>
     </div>
   </div>
