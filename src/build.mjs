@@ -50,7 +50,6 @@ const NAV = [
   ['residences.html', 'Résidences'],
   ['pool-day.html', 'Pool Day'],
   ['le-feu.html', 'Le Feu'],
-  ['cafe.html', 'Le Café'],
   ['celebrations.html', 'Célébrations & événements'],
   ['galerie.html', 'Galerie'],
 ];
@@ -128,7 +127,6 @@ function footer() {
         <li><a href="${P}residences.html">Résidences</a></li>
         <li><a href="${P}pool-day.html">Pool Day</a></li>
         <li><a href="${P}le-feu.html">Le Feu</a></li>
-        <li><a href="${P}cafe.html">Le Tanger Café</a></li>
         <li><a href="${P}celebrations.html">Célébrations & événements</a></li></ul></div>
       <div><h4>Découvrir</h4><ul>
         <li><a href="${P}a-propos.html">Le lieu</a></li>
@@ -295,23 +293,6 @@ page('index.html', {
     <h2 class="display d-xl rv rv-d1" style="max-width:11ch">Quand le soleil tombe, <em>le feu peut s’allumer.</em></h2>
     <p class="lead rv rv-d2">Un salon de pierre creusé à côté de la piscine, des coussins, un thé à la menthe. Le feu s'allume à votre demande, toute l'année.</p>
     <div class="rv rv-d3" style="margin-top:2.2rem"><a class="btn btn-primary" href="${P}le-feu.html">Le Feu ${icon.arrow}</a></div>
-  </div>
-</section>
-
-<section class="sec ground-dusk" data-tone-section="dusk">
-  <div class="wrap">
-    <div class="split-head">
-      <div><p class="soon rv">Ouverture prochaine</p><h2 class="display d-xl rv rv-d1">Le Tanger <em>Café</em></h2></div>
-      <div class="rv rv-d2"><p class="lead">Un salon marocain baigné de lumière, une salle ouverte sur le jardin, un bar à mocktails. Thé, café, pâtisseries marocaines, msemmen et harcha, du matin au soir.</p><a class="btn btn-line" style="margin-top:1.4rem" href="${P}cafe.html">Découvrir le café ${icon.arrow}</a></div>
-    </div>
-    <div class="mosaic mosaic-2r">
-      <div class="frame m1 clipin">${img('cafe-1', 'Projet du Tanger Café, la salle', { sizes: '(max-width:860px) 100vw, 58vw' })}</div>
-      <div class="frame m2 clipin">${img('cafe-2', 'Projet du bar à mocktails', { sizes: '(max-width:860px) 60vw, 40vw' })}</div>
-      <div class="frame m3 clipin">${img('cafe-3', 'Projet du salon marocain baigné de soleil', { sizes: '(max-width:860px) 40vw, 33vw' })}</div>
-      <div class="frame m4 clipin">${img('cafe-4', 'Projet du salon marocain en soirée', { sizes: '(max-width:860px) 100vw, 50vw' })}</div>
-      <div class="frame m5 clipin">${img('cafe-terrace', 'Projet de la terrasse du café', { sizes: '(max-width:860px) 100vw, 60vw' })}</div>
-    </div>
-    <p class="note" style="margin-top:18px">Images de projet. Le café ouvre prochainement.</p>
   </div>
 </section>
 
@@ -543,36 +524,8 @@ ${pageHero({ media: 'feu-night-8462', alt: 'Le feu dans le salon de pierre', eye
 ${closing()}`,
 });
 
-/* CAFE */
+/* bar menu helper */
 const li = ([n, p, d]) => `<li><span>${n}${d ? `<span class="desc">${d}</span>` : ''}</span><span>${p}</span></li>`;
-page('cafe.html', {
-  title: 'Le Tanger Café · Ouverture prochaine', current: 'cafe.html', ogImg: 'cafe-3',
-  desc: 'Le Tanger Café ouvre prochainement : salon marocain, salle ouverte sur le jardin et bar à mocktails. Carte des boissons disponible toute la journée.',
-  body: () => `
-${pageHero({ media: 'cafe-1', alt: 'Projet du Tanger Café', tag: 'Ouverture prochaine', title: 'Le Tanger <em>Café</em>', lead: 'Thé, café, pâtisseries marocaines, msemmen, harcha. Un salon marocain, une salle ouverte sur le jardin, un bar à mocktails.' })}
-<section class="sec">
-  <div class="wrap">
-    <div class="split-head"><h2 class="display d-l rv">Trois ambiances, <em>du matin au soir.</em></h2><p class="lead rv rv-d1">Le café est en cours d'aménagement. Voici le projet, tel qu'il prendra vie.</p></div>
-    <div class="mosaic">
-      <div class="frame m1 clipin">${img('cafe-3', 'Le salon marocain, en journée', { sizes: '(max-width:860px) 100vw, 58vw' })}</div>
-      <div class="frame m2 clipin">${img('cafe-2', 'Le bar à mocktails', { sizes: '(max-width:860px) 60vw, 40vw' })}</div>
-      <div class="frame m3 clipin">${img('cafe-4', 'Le salon marocain, en soirée', { sizes: '(max-width:860px) 40vw, 33vw' })}</div>
-      <div class="frame m4 clipin">${img('cafe-5', "L'entrée du café et le bar", { sizes: '(max-width:860px) 100vw, 50vw' })}</div>
-    </div>
-    <p class="note" style="margin-top:18px">Images de projet, non contractuelles.</p>
-  </div>
-</section>
-${barSection()}
-<section class="feature rev">
-  <div class="feature-media">${img('cafe-6', 'Projet de la terrasse du café', { sizes: '(max-width:860px) 100vw, 55vw', par: 0.1 })}</div>
-  <div class="feature-copy">
-    <p class="eyebrow">Le menu</p>
-    <h2 class="display d-l">Une carte courte, <em>tout en douceur.</em></h2>
-    <p class="lead">Thé, café, cheesecake, cacahuètes, pâtisseries marocaines, harcha, msemmen. Le menu complet sera publié à l'ouverture.</p>
-  </div>
-</section>
-${closing()}`,
-});
 
 /* CELEBRATIONS & EVENEMENTS (one page) */
 const occasions = [
@@ -610,7 +563,7 @@ ${closing('Parlons <em>de votre séjour.</em>', 'Appelez-nous ou écrivez-nous s
 });
 
 /* GALERIE */
-const galleryList = ['hero-pool-sunset', 'penthouse-1', 'ext-dusk-palms', 'feu-night-8450', 'pool-1', 'apt2-1', 'drone-pool', 'cafe-3', 'suitepool-1', 'ext-night-palms', 'penthouse-3', 'pool-dusk-2', 'apt1pano-1', 'drone-dusk-1', 'feu-night-8453', 'ext-entree', 'apt2-4', 'pool-salon', 'suitegarden-1', 'drone-golden', 'cafe-2', 'penthouse-4', 'ext-palms-day', 'pool-dusk-3', 'apt1sea-2', 'drone-sunset', 'studio-1', 'ext-lounge-1', 'feu-night-8462', 'pool-4', 'apt1pool-day', 'drone-sea-1', 'ext-night-palms2', 'ext-phone', 'cafe-4', 'pool-sunset-2'];
+const galleryList = ['hero-pool-sunset', 'penthouse-1', 'ext-dusk-palms', 'feu-night-8450', 'pool-1', 'apt2-1', 'drone-pool', 'suitepool-1', 'ext-night-palms', 'penthouse-3', 'pool-dusk-2', 'apt1pano-1', 'drone-dusk-1', 'feu-night-8453', 'ext-entree', 'apt2-4', 'pool-salon', 'suitegarden-1', 'drone-golden', 'penthouse-4', 'ext-palms-day', 'pool-dusk-3', 'apt1sea-2', 'drone-sunset', 'studio-1', 'ext-lounge-1', 'feu-night-8462', 'pool-4', 'apt1pool-day', 'drone-sea-1', 'ext-night-palms2', 'ext-phone', 'pool-sunset-2'];
 page('galerie.html', {
   title: 'Galerie · Le Tanger', current: 'galerie.html',
   desc: 'Les résidences, les piscines, le feu et la lumière de Tanger en images.',

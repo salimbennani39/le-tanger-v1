@@ -28,4 +28,3 @@ the `.html` files, the `residences/` folder and the `assets/` folder.
 - Every "Réserver" button uses the same direct-book link. The script rewrites the dates to today and tomorrow (Tangier time) on every page load, so the link never goes stale.
 - The contact form sends nothing to a server: it opens WhatsApp (+212 656 103 761) with the message pre-filled.
 - Photos: `assets/img/*-1200.webp` and `*-2400.webp`, warm-graded from the Fata Morgana shoot. The fire photos with guests are AI-edited (Higgsfield).
-- Café images are project renders. The page says "Ouverture prochaine".
