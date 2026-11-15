@@ -578,8 +578,8 @@ const occasions = [
   ['Anniversaire', 'Une année de plus, à fêter face à la mer. Ballons, gâteau et bougies vous attendent à votre arrivée.', 'celebration-balloons', 'deco-red', 'call'],
   ['Saint-Valentin', 'Une nuit à deux face à la mer, une chambre décorée pour l’occasion.', 'deco-valentin', 'suitepool-palms', 'call'],
   ['Nuit de noces', 'La première nuit, dans une suite ou un penthouse, décorée pour vous accueillir.', 'deco-pink', 'penthouse-1', 'call'],
-  ['Baby shower', 'Un après-midi doux pour célébrer l’arrivée de bébé, entre amies et en famille, dans l’un de nos appartements.', 'ph2-2', 'apt2-4', 'Nous écrire'],
-  ['Bridal shower', 'Avant le grand jour, une fête entre amies dans un appartement lumineux, avec vue sur la mer.', 'penthouse-3', 'apt2-1', 'Nous écrire'],
+  ['Baby shower', 'Un après-midi doux pour célébrer l’arrivée de bébé, entre amis et en famille, dans l’un de nos appartements.', 'ph2-2', 'apt2-4', 'Nous écrire'],
+  ['Bridal shower', 'Avant le grand jour, une fête entre amis dans un appartement lumineux, avec vue sur la mer.', 'penthouse-3', 'apt2-1', 'Nous écrire'],
 ];
 const occasionRow = ([t, d, a, b, cta]) => `<article class="ritem" id="${t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, '-')}">
         <div class="ritem-media"><div class="frame clipin">${img(a, t, { sizes: '(max-width:860px) 70vw, 40vw' })}</div><div class="frame clipin">${img(b, t, { sizes: '(max-width:860px) 30vw, 16vw' })}</div></div>
@@ -592,7 +592,7 @@ page('celebrations.html', {
   title: 'Célébrations & événements · Le Tanger', current: 'celebrations.html', ogImg: 'deco-red',
   desc: 'Anniversaire, Saint-Valentin, nuit de noces, baby shower, bridal shower : célébrez et réunissez vos proches à Le Tanger.',
   body: () => `
-${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de roses', eyebrow: 'Célébrations & événements', title: 'Pour les jours <em>qui comptent.</em>', lead: 'Une chambre décorée pour l’occasion, une fête entre amies dans un appartement. Dites-nous ce que vous préparez, nous nous occupons du reste.' })}
+${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de roses', eyebrow: 'Célébrations & événements', title: 'Pour les jours <em>qui comptent.</em>', lead: 'Une chambre décorée pour l’occasion, une fête entre amis dans un appartement. Dites-nous ce que vous préparez, nous nous occupons du reste.' })}
 <section class="sec">
   <div class="wrap">
     <div class="split-head" id="celebrations"><div><p class="eyebrow">Célébrations</p><h2 class="display d-l">Votre chambre, <em>décorée pour l’occasion.</em></h2></div><p class="lead">Fleurs, pétales de roses, bougies, ballons et gâteau. Tout est prêt à votre arrivée. Appelez-nous avec l’occasion, la date et vos envies.</p></div>
