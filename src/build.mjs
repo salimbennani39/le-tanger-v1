@@ -624,7 +624,7 @@ ${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la coll
     <div>
       <p class="eyebrow rv">Dans le salon de réception</p>
       <h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
-      <p class="lead rv rv-d2" style="margin-top:1.6rem">Sur les étagères en bois de la réception, chaque appareil raconte une étape de l’histoire du téléphone : l’époque des opératrices, l’arrivée du cadran, puis les modèles de salon. Prenez le temps de les regarder en arrivant, et demandez-nous de vous en raconter l’histoire.</p>
+      <p class="lead rv rv-d2" style="margin-top:1.6rem">Sur les étagères en bois de la réception, chaque appareil raconte une étape de l’histoire du téléphone : l’époque des opératrices, l’arrivée du cadran, puis les modèles de salon. La collection est ouverte à tous, résidents comme visiteurs : passez la voir, et demandez-nous de vous en raconter l’histoire.</p>
     </div>
     <div class="frame clipin phones-hero">${img('phone-sculpture', 'Sculpture en laiton et téléphones anciens dans le salon de réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
   </div>
@@ -650,7 +650,7 @@ ${phoneStories.map((x, k) => `<section class="feature${k % 2 ? ' rev' : ''} phon
     </ol>
   </div>
 </section>
-${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposée dans le salon de réception, ouvert à nos hôtes pendant leur séjour.')}`,
+${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposée dans le salon de réception et ouverte à tous, que vous séjourniez chez nous ou non. Passez la voir, nous serons ravis de vous la faire découvrir.')}`,
 });
 
 /* GALERIE */
