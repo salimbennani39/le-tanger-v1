@@ -149,7 +149,7 @@ function footer() {
         <li><a href="mailto:${site.email}">${site.email}</a></li>
         <li>Arrivée dès 15h00 · Départ 12h00</li></ul></div>
     </div>
-    <div class="ftr-bot"><span>© <span data-year></span> Le Tanger Résidence Hôtelière. Photographies : Fata Morgana.</span><span><a href="${P}confidentialite.html">Confidentialité</a> · <a href="${P}conditions.html">Conditions générales</a></span></div>
+    <div class="ftr-bot"><span>© <span data-year></span> Le Tanger Résidence Hôtelière. Photographies : Fata Morgana.</span><span><a href="${P}mentions-legales.html">Mentions légales</a> · <a href="${P}confidentialite.html">Confidentialité</a> · <a href="${P}conditions.html">Conditions générales</a></span></div>
   </div>
 </footer>`;
 }
@@ -166,7 +166,7 @@ const pageHero = ({ media, alt, eyebrow, title, lead, short = false, video = nul
   </div>
 </section>`;
 
-const closing = (title = 'Le soleil se couche.<br><em>Restez encore un peu.</em>', text = 'Réservez directement sur notre site, au meilleur tarif.') => `
+const closing = (title = 'Le soleil se couche.<br><em>Restez encore un peu&nbsp;!</em>', text = 'Réservez directement sur notre site, au meilleur tarif.') => `
 <section class="closing ground-dark">
   <div class="wrap">
     <h2 class="display d-xl rv">${title}</h2>
@@ -808,20 +808,93 @@ ${closing()}`,
 });
 
 /* LEGAL */
-const legal = (path, title, paras) => page(path, {
-  title: `${title} · Le Tanger`, light: true, desc: title,
-  body: () => `<section class="sec" style="padding-top:clamp(140px,16vw,220px)"><div class="wrap" style="max-width:820px"><h1 class="display d-l">${title}</h1><div class="stack" style="margin-top:2rem">${paras.map(p => `<p>${p}</p>`).join('')}</div></div></section>`,
+const legal = (path, eyebrow, title, intro, sections) => page(path, {
+  title: `${title} · Le Tanger`, light: true, desc: `${title} du site Le Tanger Résidence Hôtelière.`,
+  body: () => `<section class="sec legal" style="padding-top:clamp(140px,16vw,220px)"><div class="wrap legal-wrap">
+  <p class="eyebrow">${eyebrow}</p><h1 class="display d-l">${title}</h1>
+  <p class="lead" style="margin-top:1.4rem">${intro}</p>
+  <p class="muted legal-date">Dernière mise à jour : novembre 2026</p>
+  ${sections.map(([h, paras]) => `<section><h2>${h}</h2>${paras.map(x => x.startsWith('•') ? `<ul>${x.split('\n').map(l => `<li>${l.replace(/^•\s*/, '')}</li>`).join('')}</ul>` : `<p>${x}</p>`).join('')}</section>`).join('')}
+  <p class="legal-links">Voir aussi : <a href="${P}mentions-legales.html">Mentions légales</a> · <a href="${P}confidentialite.html">Politique de confidentialité</a> · <a href="${P}conditions.html">Conditions générales</a></p>
+</div></section>`,
 });
-legal('confidentialite.html', 'Politique de confidentialité', [
-  "Ce site ne dépose pas de cookies publicitaires. Les messages envoyés depuis le formulaire de contact s'ouvrent dans WhatsApp : aucune donnée n'est stockée sur ce site.",
-  'Les réservations sont traitées par notre moteur de réservation partenaire (direct-book.com), soumis à sa propre politique de confidentialité.',
-  `Pour toute question relative à vos données : ${site.email}.`,
-]);
-legal('conditions.html', 'Conditions générales', [
-  "Arrivée à partir de 15h00, départ jusqu'à 12h00. Logements non-fumeurs à l'intérieur. Animaux admis sur demande. Événements dans les logements sur demande uniquement. Heures calmes de 20h00 à 10h00.",
-  'Les conditions tarifaires, d’annulation et de paiement de chaque réservation sont indiquées lors de la réservation en ligne.',
-  `Le Tanger Résidence Hôtelière, ${site.address}. ${site.email}.`,
-]);
+
+legal('confidentialite.html', 'Vos données', 'Politique de confidentialité',
+  'Nous respectons votre vie privée. Cette page explique quelles données sont traitées lorsque vous utilisez ce site, pourquoi, et quels sont vos droits.',
+  [
+    ['Responsable du traitement', [
+      `Le Tanger Résidence Hôtelière, ${site.address}. Contact : <a href="mailto:${site.email}">${site.email}</a> · ${site.phone}.`,
+    ]],
+    ['Les données que nous traitons', [
+      '• Réservation de séjour : vos nom, coordonnées, dates de séjour et informations de paiement, saisies sur notre moteur de réservation partenaire.\nContact et demandes : les informations que vous nous transmettez par WhatsApp, par téléphone, par e-mail ou à la réception (nom, téléphone, dates, message).\nSéjour sur place : les informations nécessaires à votre accueil, à la conciergerie et aux services demandés (petit-déjeuner, célébrations, transferts, réservations).',
+      'Le formulaire de contact du site ne stocke rien : il ouvre simplement WhatsApp avec votre message prérempli, que vous choisissez d’envoyer ou non.',
+    ]],
+    ['Pourquoi nous les utilisons', [
+      '• Gérer votre réservation, votre arrivée et votre séjour.\nRépondre à vos demandes et organiser les services que vous sollicitez.\nRespecter nos obligations légales, notamment la déclaration des voyageurs exigée par la réglementation marocaine.',
+      'Nous ne vendons pas vos données et ne les utilisons pas à des fins publicitaires.',
+    ]],
+    ['Prestataires et partenaires', [
+      '• <b>Réservation en ligne</b> : direct-book.com, qui traite les réservations et les paiements selon sa propre politique de confidentialité.\n<b>WhatsApp</b> (Meta), lorsque vous nous écrivez par ce canal.\n<b>Google</b> : polices de caractères (Google Fonts) et carte (Google Maps) sur la page Contact.\n<b>Conciergerie</b> : lorsque vous nous demandez une réservation (restaurant, transfert, excursion, spa), nous transmettons au prestataire concerné uniquement les informations nécessaires.',
+    ]],
+    ['Cookies', [
+      'Ce site ne dépose aucun cookie publicitaire ni de mesure d’audience. La carte Google Maps intégrée à la page Contact et le moteur de réservation peuvent déposer leurs propres cookies lorsque vous les utilisez.',
+    ]],
+    ['Durée de conservation', [
+      'Vos données sont conservées le temps nécessaire à votre séjour et au suivi de votre demande, puis pendant les durées imposées par la loi (obligations comptables et administratives).',
+    ]],
+    ['Vos droits', [
+      'Conformément à la loi n° 09-08 relative à la protection des personnes physiques à l’égard du traitement des données à caractère personnel, vous disposez d’un droit d’accès, de rectification et d’opposition. Si vous résidez dans l’Union européenne, vous bénéficiez également des droits prévus par le RGPD.',
+      `Pour exercer vos droits, écrivez-nous à <a href="mailto:${site.email}">${site.email}</a>. Vous pouvez aussi saisir la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP).`,
+    ]],
+  ]);
+
+legal('conditions.html', 'Séjourner chez nous', 'Conditions générales',
+  'Ces conditions s’appliquent aux séjours, au Pool Day et aux services proposés par Le Tanger Résidence Hôtelière. En réservant, vous les acceptez.',
+  [
+    ['Réservation', [
+      'Les séjours se réservent en ligne sur notre site, via notre moteur de réservation partenaire, ou directement auprès de la réception. Les tarifs, les conditions de paiement et les conditions d’annulation propres à chaque offre sont indiqués au moment de la réservation et figurent dans votre confirmation.',
+      'Les prix sont exprimés en dirhams marocains (MAD).',
+    ]],
+    ['Arrivée et départ', [
+      '• Arrivée à partir de 15h00.\nDépart jusqu’à 12h00.\nUne pièce d’identité est demandée à l’arrivée pour chaque voyageur, conformément à la réglementation.',
+    ]],
+    ['Règles de la maison', [
+      '• Logements non-fumeurs à l’intérieur.\nAnimaux admis sur demande.\nHeures calmes de 20h00 à 10h00.\nÉvénements dans les logements uniquement sur demande et après accord de la direction.\nLe nombre d’occupants ne peut dépasser la capacité indiquée pour chaque logement.',
+    ]],
+    ['Pool Day', [
+      'De mai à septembre, de 10h00 au coucher du soleil. Tarif : 350 MAD par adulte, 200 MAD par enfant. Le pass se règle sur place, à l’arrivée. Il comprend l’accès aux piscines, un transat dans la limite des disponibilités (attribué à l’arrivée) et une serviette. Les boissons ne sont pas incluses.',
+    ]],
+    ['Petit-déjeuner', [
+      'En supplément : 90 MAD par personne et par jour, réglé sur place à l’arrivée. Servi en chambre, de 8h00 à 11h00.',
+    ]],
+    ['Conciergerie et services', [
+      'La conciergerie est incluse dans votre séjour. Les prestations qu’elle réserve pour vous auprès de partenaires extérieurs (restaurants, transferts, excursions, spa) sont soumises aux tarifs et aux conditions de ces partenaires.',
+      'Les décorations de célébration et les événements sont organisés sur demande, selon les disponibilités.',
+    ]],
+    ['Responsabilité', [
+      'Les enfants restent sous la surveillance de leurs parents, en particulier aux abords des piscines. Nous vous recommandons de ne pas laisser d’objets de valeur sans surveillance dans les espaces communs. Toute dégradation constatée dans un logement pourra être facturée.',
+    ]],
+    ['Droit applicable', [
+      `Ces conditions sont régies par le droit marocain. Pour toute question ou réclamation, contactez-nous en priorité à <a href="mailto:${site.email}">${site.email}</a> : nous ferons notre possible pour trouver une solution à l’amiable.`,
+    ]],
+  ]);
+
+legal('mentions-legales.html', 'Informations', 'Mentions légales',
+  'Informations sur l’éditeur et l’hébergement du site.',
+  [
+    ['Éditeur du site', [
+      `Le Tanger Résidence Hôtelière<br>${site.address}<br>Téléphone : ${site.phone}<br>E-mail : <a href="mailto:${site.email}">${site.email}</a>`,
+    ]],
+    ['Hébergement', [
+      'GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.',
+    ]],
+    ['Propriété intellectuelle', [
+      'L’ensemble des contenus de ce site (textes, photographies, vidéos, logo) est la propriété de Le Tanger Résidence Hôtelière ou de leurs auteurs. Photographies : Fata Morgana. Toute reproduction sans autorisation préalable est interdite.',
+    ]],
+    ['Données personnelles', [
+      `Voir notre <a href="${P}confidentialite.html">politique de confidentialité</a>.`,
+    ]],
+  ]);
 
 /* ---------- write ---------- */
 for (const p of pages) {
