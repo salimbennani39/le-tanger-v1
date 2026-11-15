@@ -132,7 +132,8 @@ function footer() {
         <li><a href="${P}residences.html">Résidences</a></li>
         <li><a href="${P}pool-day.html">Pool Day</a></li>
         <li><a href="${P}le-feu.html">Le Feu</a></li>
-        <li><a href="${P}celebrations.html">Célébrations & événements</a></li></ul></div>
+        <li><a href="${P}celebrations.html">Célébrations & événements</a></li>
+        <li><a href="${P}conciergerie.html">Conciergerie</a></li></ul></div>
       <div><h4>Découvrir</h4><ul>
         <li><a href="${P}a-propos.html">Le lieu</a></li>
         <li><a href="${P}galerie.html">Galerie</a></li>
@@ -232,6 +233,23 @@ const phonesSection = (cls = '') => `
   </div>
 </section>`;
 
+const conciergeServices = [
+  ['Dîners privés', 'Un dîner rien que pour vous, dressé et préparé selon vos envies : pour une occasion à fêter, ou simplement pour une belle soirée face à la mer.'],
+  ['Restaurants', 'Poisson grillé au port, cuisine marocaine dans la médina, rooftop au coucher du soleil : dites-nous ce qui vous ferait plaisir, nous réservons votre table, au déjeuner comme au dîner.'],
+  ['Transferts aéroport', 'À l’arrivée comme au départ, un chauffeur vous attend à l’aéroport de Tanger Ibn Battouta et vous conduit jusqu’à la résidence.'],
+  ['Excursions', 'Cap Spartel, les grottes d’Hercule, la médina et la kasbah, Asilah ou Chefchaouen : nous organisons vos sorties, à la demi-journée ou à la journée.'],
+  ['Spa et hammam', 'Un hammam, un massage, un moment de détente : nous réservons votre créneau dans une adresse de confiance.'],
+];
+const conciergeTeaser = () => `
+<section class="sec ground-paper" id="conciergerie">
+  <div class="wrap">
+    <div class="split-head"><div><p class="eyebrow rv">Conciergerie</p><h2 class="display d-l rv rv-d1">Tanger, <em>on s’occupe du reste.</em></h2></div>
+    <div><p class="lead rv rv-d2">Une table au port, un transfert depuis l’aéroport, une excursion à Chefchaouen, un dîner privé : demandez, nous organisons. Un service inclus dans votre séjour.</p>
+    <a class="btn btn-line rv rv-d3" style="margin-top:2rem" href="${P}conciergerie.html">Découvrir la conciergerie ${icon.arrow}</a></div></div>
+    <ul class="svc-chips rv">${conciergeServices.map(([t]) => `<li>${t}</li>`).join('')}</ul>
+  </div>
+</section>`;
+
 /* ---------- pages ---------- */
 const pages = [];
 const page = (path, opts) => pages.push({ path, ...opts });
@@ -320,6 +338,7 @@ page('index.html', {
 </section>
 
 ${phonesSection()}
+${conciergeTeaser()}
 <section class="sec" data-tone-section="dusk">
   <div class="wrap">
     <div class="split-head"><div><p class="eyebrow rv">Vos moments</p><h2 class="display d-l rv rv-d1">Pour les jours <em>qui comptent.</em></h2></div><p class="lead rv rv-d2">Un anniversaire, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower.</p></div>
@@ -385,7 +404,7 @@ ${breakfastSection()}
     <div><p class="eyebrow">Inclus dans chaque séjour</p><h2 class="display d-m">Le confort d'un appartement, <em>les attentions d'un hôtel.</em></h2></div>
     <ul class="check">
       <li>Ménage quotidien</li><li>Wi-Fi haut débit gratuit</li><li>Cuisine ou kitchenette équipée</li><li>Climatisation et TV connectée</li>
-      <li>Accès aux deux piscines à débordement</li><li>Parking privé gratuit, accessible PMR</li><li>Lits bébé sur demande</li><li>Arrivée dès 15h00, départ jusqu'à 12h00</li>
+      <li>Accès aux deux piscines à débordement</li><li>Parking privé gratuit, accessible PMR</li><li>Lits bébé sur demande</li><li>Conciergerie : restaurants, transferts, excursions</li><li>Arrivée dès 15h00, départ jusqu'à 12h00</li>
     </ul>
   </div>
 </section>
@@ -651,6 +670,40 @@ ${phoneStories.map((x, k) => `<section class="feature${k % 2 ? ' rev' : ''} phon
   </div>
 </section>
 ${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposée dans le salon de réception et ouverte à tous, que vous séjourniez chez nous ou non. Passez la voir, nous serons ravis de vous la faire découvrir.')}`,
+});
+
+/* CONCIERGERIE */
+page('conciergerie.html', {
+  title: 'Conciergerie · Le Tanger', current: 'conciergerie.html', ogImg: 'drone-sunset',
+  desc: 'Dîners privés, réservations de restaurants, transferts aéroport, excursions, spa et hammam : la conciergerie de Le Tanger organise votre séjour à Tanger. Service inclus.',
+  body: () => `
+${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au coucher du soleil', eyebrow: 'Conciergerie', title: 'Tanger, <em>on s’occupe du reste.</em>', lead: 'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous organisons.' })}
+<section class="sec">
+  <div class="wrap">
+    <div class="split-head"><div><p class="eyebrow rv">Inclus dans votre séjour</p><h2 class="display d-l rv rv-d1">Un seul message, <em>tout est organisé.</em></h2></div><p class="lead rv rv-d2">Notre conciergerie connaît Tanger par cœur. Elle réserve, organise et confirme pour vous, sans frais : le service est compris dans le prix de votre logement.</p></div>
+    <ol class="svc-list">
+      ${conciergeServices.map(([t, d], k) => `<li class="rv"><span class="num">${String(k + 1).padStart(2, '0')}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
+    </ol>
+  </div>
+</section>
+<section class="sec" style="padding-top:0">
+  <div class="wrap svc-strip">
+    <div class="frame clipin">${img('drone-coast', 'La côte de Tanger vue du ciel', { sizes: '(max-width:860px) 100vw, 40vw' })}</div>
+    <div class="frame clipin">${img('feu-night-8450', 'Une soirée autour du feu à la résidence', { sizes: '(max-width:860px) 100vw, 30vw' })}</div>
+    <div class="frame clipin">${img('ext-entree', 'L’entrée de la résidence le soir', { sizes: '(max-width:860px) 100vw, 30vw' })}</div>
+  </div>
+</section>
+<section class="sec ground-paper">
+  <div class="wrap">
+    <div class="split-head"><div><p class="eyebrow rv">Comment demander</p><h2 class="display d-l rv rv-d1">Comme <em>vous préférez.</em></h2></div><p class="lead rv rv-d2">Le plus tôt est le mieux, surtout pour les excursions et les transferts. Nous vous confirmons chaque réservation.</p></div>
+    <div class="steps">
+      <div class="rv"><h3>WhatsApp</h3><p>Écrivez-nous au ${site.phone}, nous répondons rapidement.</p><a class="btn btn-primary" style="margin-top:1.4rem" href="${site.whatsapp}?text=${encodeURIComponent('Bonjour, je souhaite faire une demande à la conciergerie :')}" target="_blank" rel="noopener">Écrire sur WhatsApp</a></div>
+      <div class="rv rv-d1"><h3>Téléphone</h3><p>Appelez la réception, qui s’occupe de tout.</p><a class="btn btn-line" style="margin-top:1.4rem" href="${site.phoneHref}">Appeler le ${site.phone}</a></div>
+      <div class="rv rv-d2"><h3>Room service</h3><p>Depuis votre logement, demandez simplement au room service.</p></div>
+    </div>
+  </div>
+</section>
+${closing('Votre séjour, <em>sur mesure.</em>')}`,
 });
 
 /* GALERIE */
