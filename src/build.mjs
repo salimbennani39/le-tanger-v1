@@ -698,7 +698,7 @@ ${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au couche
 </section>
 <section class="sec ground-paper">
   <div class="wrap">
-    <div class="split-head"><div><p class="eyebrow rv">Comment demander</p><h2 class="display d-l rv rv-d1">Comme <em>vous préférez.</em></h2></div><p class="lead rv rv-d2">Le plus tôt est le mieux, surtout pour les excursions et les transferts. Nous vous confirmons chaque réservation.</p></div>
+    <div class="split-head"><div><p class="eyebrow rv">Comment demander</p><h2 class="display d-l rv rv-d1">Comme <em>vous préférez.</em></h2></div><p class="lead rv rv-d2">Le plus tôt serait le mieux, surtout pour les excursions et les transferts. Nous vous confirmons chaque réservation.</p></div>
     <div class="steps">
       <div class="rv"><h3>WhatsApp</h3><p>Écrivez-nous au ${site.phone}, nous répondons rapidement.</p><a class="btn btn-primary" style="margin-top:1.4rem" href="${site.whatsapp}?text=${encodeURIComponent('Bonjour, je souhaite faire une demande à la conciergerie :')}" target="_blank" rel="noopener">Écrire sur WhatsApp</a></div>
       <div class="rv rv-d1"><h3>Téléphone</h3><p>Appelez la réception, qui s’occupe de tout.</p><a class="btn btn-line" style="margin-top:1.4rem" href="${site.phoneHref}">Appeler le ${site.phone}</a></div>
