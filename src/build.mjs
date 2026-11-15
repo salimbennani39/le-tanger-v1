@@ -209,6 +209,23 @@ const breakfastSection = (cls = '') => `
   </div>
 </section>`;
 
+const phones = [
+  ['phone-magneto', 'Fin du XIXe – début du XXe siècle', 'Le téléphone mural à manivelle', 'Pas encore de cadran : on tournait la manivelle pour faire sonner le central, et une opératrice, les fameuses « demoiselles du téléphone », branchait la communication à la main.'],
+  ['phone-bakelite', 'Années 1950', 'Le téléphone de bureau à cadran', 'Le cadran rotatif permet enfin d’appeler sans passer par l’opératrice. Les touches à l’avant servaient à passer d’une ligne à l’autre, un vrai luxe de bureau à l’époque.'],
+  ['phone-onyx', 'Années 1960 – 1970', 'Le téléphone en onyx et laiton', 'Il reprend la silhouette des combinés de la Belle Époque. Ces modèles d’apparat trônaient dans les salons, autant objets de décoration que téléphones.'],
+];
+const phonesSection = (cls = '') => `
+<section class="sec ${cls}" id="telephones">
+  <div class="wrap">
+    <div class="phones-head">
+      <div><p class="eyebrow rv">Dans le salon de réception</p><h2 class="display d-l rv rv-d1">Collection privée <em>de téléphones.</em></h2>
+      <p class="lead rv rv-d2" style="margin-top:1.6rem">Des appareils à manivelle aux cadrans des années 1950, une collection réunie au fil des années et exposée à la réception. Demandez-nous de vous en raconter l’histoire.</p></div>
+      <div class="frame clipin phones-hero">${img('phone-sculpture', 'La collection de téléphones dans le salon de réception', { sizes: '(max-width:860px) 100vw, 34vw' })}</div>
+    </div>
+    <div class="phones">${phones.map(([im, era, t, d], k) => `<article class="rv rv-d${k}"><div class="frame">${img(im, t, { sizes: '(max-width:860px) 100vw, 33vw' })}</div><p class="eyebrow">${era}</p><h3>${t}</h3><p class="muted">${d}</p></article>`).join('')}</div>
+  </div>
+</section>`;
+
 /* ---------- pages ---------- */
 const pages = [];
 const page = (path, opts) => pages.push({ path, ...opts });
@@ -296,6 +313,7 @@ page('index.html', {
   </div>
 </section>
 
+${phonesSection()}
 <section class="sec" data-tone-section="dusk">
   <div class="wrap">
     <div class="split-head"><div><p class="eyebrow rv">Vos moments</p><h2 class="display d-l rv rv-d1">Pour les jours <em>qui comptent.</em></h2></div><p class="lead rv rv-d2">Un anniversaire, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower.</p></div>
@@ -595,6 +613,7 @@ ${pageHero({ media: 'drone-dusk-1', video: 'dusk-coast.mp4', alt: 'La côte au c
     </div>
   </div>
 </section>
+${phonesSection()}
 <section class="sec ground-paper">
   <div class="wrap grid-2" style="align-items:start">
     <div><p class="eyebrow">Pourquoi Le Tanger</p><h2 class="display d-l">L'art de séjourner <em>à Tanger.</em></h2></div>
