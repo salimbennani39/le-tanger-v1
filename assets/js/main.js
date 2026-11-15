@@ -304,6 +304,78 @@
     window.open('https://wa.me/212656103761?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   }));
 
+  /* ---------- sea waves (synthesised in the browser: no audio file, nothing to download) ---------- */
+  $$('[data-waves]').forEach(btn => {
+    const section = btn.closest('section');
+    const lbl = $('.lbl', btn);
+    let ctx = null, master = null, on = false, visible = true, timers = [];
+
+    const noiseBuffer = (c, seconds, brown) => {
+      const len = c.sampleRate * seconds, buf = c.createBuffer(2, len, c.sampleRate);
+      for (let ch = 0; ch < 2; ch++) {
+        const d = buf.getChannelData(ch);
+        let last = 0, b0 = 0, b1 = 0, b2 = 0;
+        for (let i = 0; i < len; i++) {
+          const w = Math.random() * 2 - 1;
+          if (brown) { last = (last + 0.02 * w) / 1.02; d[i] = last * 3.2; }
+          else { b0 = 0.997 * b0 + w * 0.029591; b1 = 0.985 * b1 + w * 0.032534; b2 = 0.95 * b2 + w * 0.048056; d[i] = (b0 + b1 + b2 + w * 0.05) * 0.9; }
+        }
+      }
+      return buf;
+    };
+
+    function build() {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+      const pink = noiseBuffer(ctx, 6, false), brown = noiseBuffer(ctx, 6, true);
+
+      // low, constant rumble of the sea far away
+      const rumble = ctx.createBufferSource(); rumble.buffer = brown; rumble.loop = true;
+      const rf = ctx.createBiquadFilter(); rf.type = 'lowpass'; rf.frequency.value = 320;
+      const rg = ctx.createGain(); rg.gain.value = 0.35;
+      rumble.connect(rf).connect(rg).connect(master); rumble.start();
+
+      // two wave layers, slightly left and right, each breaking on its own rhythm
+      [-0.45, 0.45].forEach((pan, k) => {
+        const src = ctx.createBufferSource(); src.buffer = pink; src.loop = true; src.loopStart = k * 2;
+        const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 300; f.Q.value = 0.4;
+        const g = ctx.createGain(); g.gain.value = 0.02;
+        const p = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+        src.connect(f).connect(g);
+        if (p) { p.pan.value = pan; g.connect(p).connect(master); } else g.connect(master);
+        src.start(0, k * 2);
+        const wave = () => {
+          const t = ctx.currentTime, period = 6.5 + Math.random() * 4.5, rise = period * (0.38 + Math.random() * 0.12);
+          const peak = 0.55 + Math.random() * 0.4;
+          g.gain.cancelScheduledValues(t); f.frequency.cancelScheduledValues(t);
+          g.gain.setTargetAtTime(peak, t, rise / 3);
+          f.frequency.setTargetAtTime(1400 + Math.random() * 900, t, rise / 3);
+          g.gain.setTargetAtTime(0.03, t + rise, (period - rise) / 3.2);
+          f.frequency.setTargetAtTime(280, t + rise, (period - rise) / 2.6);
+          timers[k] = setTimeout(wave, period * 1000);
+        };
+        timers[k] = setTimeout(wave, k * 3200 + 200);
+      });
+    }
+
+    const fade = (to, s) => { const t = ctx.currentTime; master.gain.cancelScheduledValues(t); master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(to, t + s); };
+    const play = () => { if (!ctx) build(); ctx.resume(); fade(0.5, 2.2); };
+    const mute = () => { if (!ctx) return; fade(0, 0.9); setTimeout(() => { if (!on || !visible) ctx.suspend(); }, 1000); };
+    const sync = () => {
+      btn.setAttribute('aria-pressed', on); btn.classList.toggle('playing', on);
+      lbl.textContent = on ? 'Couper le son' : 'Écouter la mer';
+    };
+
+    btn.addEventListener('click', () => { on = !on; sync(); on && visible ? play() : mute(); });
+    // the sound belongs to this section: it fades out when you scroll away, and back in when you return
+    new IntersectionObserver(es => es.forEach(en => {
+      visible = en.isIntersecting;
+      if (on) visible ? play() : mute();
+    }), { threshold: 0.2 }).observe(section);
+    document.addEventListener('visibilitychange', () => { if (on && ctx) document.hidden ? mute() : (visible && play()); });
+    sync();
+  });
+
   /* year */
   $$('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 })();

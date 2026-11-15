@@ -598,3 +598,17 @@ body{font-weight:400;letter-spacing:.005em}
   .svc-strip .frame:nth-child(n){margin-top:0}
 }
 @media (max-width:1220px){.nav{display:none}.burger{display:flex}}
+
+/* sea waves sound button (band section) */
+.band-ctas{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:1.8rem}
+.waves-btn{display:inline-flex;align-items:center;gap:12px;background:rgba(251,243,232,.08);border:1px solid rgba(251,243,232,.35);color:#FBF3E8;font:inherit;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:12px 20px 12px 16px;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .3s,border-color .3s}
+.waves-btn:hover{background:rgba(251,243,232,.16);border-color:rgba(251,243,232,.6)}
+.waves-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.waves-btn .eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
+.waves-btn .eq i{display:block;width:2px;height:4px;background:currentColor;border-radius:1px;transition:height .3s}
+.waves-btn.playing .eq i{animation:eq 1.1s ease-in-out infinite}
+.waves-btn.playing .eq i:nth-child(2){animation-delay:-.3s}
+.waves-btn.playing .eq i:nth-child(3){animation-delay:-.6s}
+.waves-btn.playing .eq i:nth-child(4){animation-delay:-.85s}
+@keyframes eq{0%,100%{height:3px}50%{height:14px}}
+@media (prefers-reduced-motion:reduce){.waves-btn.playing .eq i{animation:none;height:10px}}

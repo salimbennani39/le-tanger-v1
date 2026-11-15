@@ -361,7 +361,8 @@ ${conciergeTeaser()}
         <div><dt>Centre-ville</dt><dd>≈ 8 min</dd></div>
         <div><dt>Parking</dt><dd>Privé et gratuit</dd></div>
       </dl>
-      <a class="btn btn-line" style="margin-top:1.8rem;color:#FBF3E8" href="${P}a-propos.html">Découvrir le lieu ${icon.arrow}</a>
+      <div class="band-ctas"><a class="btn btn-line" style="color:#FBF3E8" href="${P}a-propos.html">Découvrir le lieu ${icon.arrow}</a>
+      <button type="button" class="waves-btn" data-waves aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Écouter la mer</span></button></div>
     </div>
   </div>
 </section>
