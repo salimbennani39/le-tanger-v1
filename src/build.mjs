@@ -640,7 +640,7 @@ page('collection-telephones.html', {
   title: 'Collection privée de téléphones · Le Tanger', current: 'collection-telephones.html', ogImg: 'phone-onyx',
   desc: 'Des téléphones muraux à manivelle aux cadrans des années 1950 : la collection privée de téléphones anciens exposée à la réception de Le Tanger.',
   body: () => `
-${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée — Khalid Bennani', title: 'Une histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de réception.' })}
+${pageHero({ media: 'phone-onyx', alt: 'Téléphone en onyx et laiton de la collection', eyebrow: 'Collection privée — Khalid Bennani', title: 'Histoire <em>du téléphone.</em>', lead: 'De la manivelle au cadran, une collection de téléphones anciens réunie au fil des années et exposée dans le salon de réception.' })}
 <section class="sec">
   <div class="wrap phones-head" style="margin-bottom:0">
     <div>
