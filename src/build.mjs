@@ -290,6 +290,7 @@ page('index.html', {
         <div><dt>Centre de Tanger</dt><dd>≈ 8 min</dd></div>
         <div><dt>Piscines à débordement</dt><dd>2, face à la mer</dd></div>
         <div><dt>Vue</dt><dd>Méditerranée et Cap Malabata</dd></div>
+        <div><dt>Petit-déjeuner</dt><dd>Servi en chambre, 8h00 – 11h00</dd></div>
         <div><dt>Coucher du soleil ce soir</dt><dd class="num" data-sunset>--:--</dd></div>
       </dl>
     </div>
