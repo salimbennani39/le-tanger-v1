@@ -244,11 +244,20 @@
   frame();
 
   /* ---------- hero video: play when allowed ---------- */
+  /* videos marked data-src wait until the page has finished loading: the poster shows instantly,
+     the browser picks the lightest format it supports (AV1, then HEVC, then H.264) and streams it */
   $$('video[data-auto]').forEach(v => {
     v.muted = true; v.playsInline = true;
+    const lazy = $$('source[data-src]', v);
     if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
-    const vio = new IntersectionObserver(es => es.forEach(en => en.isIntersecting ? v.play().catch(() => {}) : v.pause()));
-    vio.observe(v);
+    let ready = !lazy.length, inView = false;
+    const go = () => { if (ready && inView) v.play().catch(() => {}); };
+    if (!ready) {
+      const attach = () => { lazy.forEach(s => { s.src = s.dataset.src; s.removeAttribute('data-src'); }); v.preload = 'auto'; v.load(); ready = true; go(); };
+      const later = () => setTimeout(attach, 60);
+      document.readyState === 'complete' ? later() : addEventListener('load', later, { once: true });
+    }
+    new IntersectionObserver(es => es.forEach(en => { inView = en.isIntersecting; inView ? go() : v.pause(); })).observe(v);
   });
 
   /* ---------- rail (drag + buttons) ---------- */

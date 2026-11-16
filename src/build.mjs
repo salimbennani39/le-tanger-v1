@@ -263,9 +263,13 @@ page('index.html', {
   body: () => `
 <section class="hero" data-tone-section="day">
   <div class="hero-media">
-    <video data-auto autoplay muted loop playsinline preload="auto" poster="${P}assets/video/hero-montage-poster.jpg">
-      <source src="${P}assets/video/hero-montage-m.mp4" type="video/mp4" media="(max-width: 700px)">
-      <source src="${P}assets/video/hero-montage.mp4" type="video/mp4">
+    <video data-auto autoplay muted loop playsinline preload="none" poster="${P}assets/video/hero-film-poster.jpg">
+      <source data-src="${P}assets/video/hero-film-m-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' media="(max-width: 700px)">
+      <source data-src="${P}assets/video/hero-film-m-hevc.mp4" type='video/mp4; codecs="hvc1"' media="(max-width: 700px)">
+      <source data-src="${P}assets/video/hero-film-m.mp4" type="video/mp4" media="(max-width: 700px)">
+      <source data-src="${P}assets/video/hero-film-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"'>
+      <source data-src="${P}assets/video/hero-film-hevc.mp4" type='video/mp4; codecs="hvc1"'>
+      <source data-src="${P}assets/video/hero-film.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-shade"></div>
