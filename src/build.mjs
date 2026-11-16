@@ -9,7 +9,7 @@ import { createHash } from 'node:crypto';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* cache-busting: a new version tag whenever the CSS or JS changes, so browsers never show an old stylesheet */
 const hash8 = f => createHash('md5').update(readFileSync(join(ROOT, f))).digest('hex').slice(0, 8);
-const VER = { css: hash8('src/assets/css/styles.css'), js: hash8('src/assets/js/main.js') };
+const VER = { css: hash8('src/assets/css/styles.css'), js: hash8('src/assets/js/main.js'), vid: hash8('assets/video/hero-film.mp4') };
 const LOGO = readFileSync(join(ROOT, 'src/logo-inline.svg'), 'utf8');
 cpSync(join(ROOT, 'src/assets/css'), join(ROOT, 'assets/css'), { recursive: true });
 cpSync(join(ROOT, 'src/assets/js'), join(ROOT, 'assets/js'), { recursive: true });
@@ -263,17 +263,17 @@ page('index.html', {
   body: () => `
 <section class="hero" data-tone-section="day">
   <div class="hero-media">
-    <video data-auto autoplay muted loop playsinline preload="none" poster="${P}assets/video/hero-film-poster.jpg">
-      <source data-src="${P}assets/video/hero-film-m-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' media="(max-width: 700px)">
-      <source data-src="${P}assets/video/hero-film-m-hevc.mp4" type='video/mp4; codecs="hvc1"' media="(max-width: 700px)">
-      <source data-src="${P}assets/video/hero-film-m.mp4" type="video/mp4" media="(max-width: 700px)">
-      <source data-src="${P}assets/video/hero-film-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"'>
-      <source data-src="${P}assets/video/hero-film-hevc.mp4" type='video/mp4; codecs="hvc1"'>
-      <source data-src="${P}assets/video/hero-film.mp4" type="video/mp4">
+    <video data-auto autoplay muted loop playsinline preload="none" poster="${P}assets/video/hero-film-poster.jpg?v=${VER.vid}">
+      <source data-src="${P}assets/video/hero-film-m-av1.mp4?v=${VER.vid}" type='video/mp4; codecs="av01.0.05M.08"' media="(max-width: 700px)">
+      <source data-src="${P}assets/video/hero-film-m-hevc.mp4?v=${VER.vid}" type='video/mp4; codecs="hvc1"' media="(max-width: 700px)">
+      <source data-src="${P}assets/video/hero-film-m.mp4?v=${VER.vid}" type="video/mp4" media="(max-width: 700px)">
+      <source data-src="${P}assets/video/hero-film-av1.mp4?v=${VER.vid}" type='video/mp4; codecs="av01.0.05M.08"'>
+      <source data-src="${P}assets/video/hero-film-hevc.mp4?v=${VER.vid}" type='video/mp4; codecs="hvc1"'>
+      <source data-src="${P}assets/video/hero-film.mp4?v=${VER.vid}" type="video/mp4">
     </video>
   </div>
   <div class="hero-shade"></div>
-  <button type="button" class="waves-btn hero-sound" data-film-sound="${P}assets/video/hero-film-audio.m4a" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Activer le son</span></button>
+  <button type="button" class="waves-btn hero-sound" data-film-sound="${P}assets/video/hero-film-audio.m4a?v=${VER.vid}" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Activer le son</span></button>
   <div class="hero-copy">
     <h1 class="display d-xxl"><small>Résidence hôtelière · Tanger</small>Le Tanger</h1>
     <div class="hero-side">
