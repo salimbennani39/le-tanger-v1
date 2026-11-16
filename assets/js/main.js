@@ -313,6 +313,38 @@
     window.open('https://wa.me/212656103761?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   }));
 
+  /* ---------- hero film soundtrack: a small separate file, downloaded only when the visitor asks for sound ---------- */
+  $$('[data-film-sound]').forEach(btn => {
+    const v = $('.hero video'), lbl = $('.lbl', btn);
+    if (!v) return;
+    let a = null, on = false, tick = 0;
+    const ramp = (to, ms, done) => {
+      clearInterval(tick);
+      const from = a.volume, t0 = Date.now();
+      tick = setInterval(() => {
+        const k = Math.min(1, (Date.now() - t0) / ms);
+        a.volume = Math.max(0, Math.min(1, from + (to - from) * k));
+        if (k >= 1) { clearInterval(tick); done && done(); }
+      }, 40);
+    };
+    const sync = () => { if (a && Math.abs(a.currentTime - v.currentTime) > 0.3) a.currentTime = v.currentTime; };
+    const startAudio = () => { if (!on || v.paused) return; sync(); a.play().then(() => ramp(1, 1200)).catch(() => {}); };
+    const setUp = () => {
+      a = new Audio(btn.dataset.filmSound); a.preload = 'auto'; a.volume = 0;
+      v.addEventListener('timeupdate', () => { if (on) sync(); });
+      v.addEventListener('pause', () => a.pause());
+      v.addEventListener('play', startAudio);
+      v.addEventListener('seeked', () => { if (on) a.currentTime = v.currentTime; });
+    };
+    btn.addEventListener('click', () => {
+      on = !on;
+      btn.setAttribute('aria-pressed', on); btn.classList.toggle('playing', on);
+      lbl.textContent = on ? 'Couper le son' : 'Activer le son';
+      if (on) { if (!a) setUp(); if (v.paused) v.play().catch(() => {}); a.currentTime = v.currentTime; startAudio(); }
+      else if (a) ramp(0, 500, () => a.pause());
+    });
+  });
+
   /* ---------- sea waves (synthesised in the browser: no audio file, nothing to download) ---------- */
   $$('[data-waves]').forEach(btn => {
     const section = btn.closest('section');

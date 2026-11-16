@@ -273,6 +273,7 @@ page('index.html', {
     </video>
   </div>
   <div class="hero-shade"></div>
+  <button type="button" class="waves-btn hero-sound" data-film-sound="${P}assets/video/hero-film-audio.m4a" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">Activer le son</span></button>
   <div class="hero-copy">
     <h1 class="display d-xxl"><small>Résidence hôtelière · Tanger</small>Le Tanger</h1>
     <div class="hero-side">

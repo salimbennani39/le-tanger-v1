@@ -638,3 +638,7 @@ body{font-weight:400;letter-spacing:.005em}
 .legal section b{color:var(--fg);font-weight:500}
 .legal a{color:var(--fg)}
 .legal-links{margin-top:clamp(48px,6vw,80px);font-size:.9rem;color:var(--fg-soft)}
+
+/* hero sound button */
+.hero-sound{position:absolute;z-index:3;right:var(--gutter);top:clamp(104px,14vh,140px)}
+@media (max-width:860px){.hero-sound{top:96px;right:20px}}
