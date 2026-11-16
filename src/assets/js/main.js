@@ -327,20 +327,40 @@
         if (k >= 1) { clearInterval(tick); done && done(); }
       }, 40);
     };
-    const sync = () => { if (a && Math.abs(a.currentTime - v.currentTime) > 0.3) a.currentTime = v.currentTime; };
-    const startAudio = () => { if (!on || v.paused) return; sync(); a.play().then(() => ramp(1, 1200)).catch(() => {}); };
+    /* keep the music on the film's clock without audible jumps:
+       small drift is absorbed by nudging the playback speed, only a big gap (or the loop restart) seeks */
+    let lastT = 0;
+    const sync = () => {
+      if (!a || !on) return;
+      const vt = v.currentTime;
+      const looped = vt + 1 < lastT; lastT = vt;
+      if (looped || a.ended) { a.currentTime = vt; a.playbackRate = 1; if (!v.paused) a.play().catch(() => {}); return; }
+      if (v.paused || v.readyState < 3) return;
+      if (a.paused) { a.currentTime = vt; a.play().catch(() => {}); return; }
+      const drift = a.currentTime - vt;
+      if (Math.abs(drift) > 1) { a.currentTime = vt; a.playbackRate = 1; }
+      else if (Math.abs(drift) > 0.05) a.playbackRate = Math.max(0.94, Math.min(1.06, 1 - drift * 0.6));
+      else a.playbackRate = 1;
+    };
+    const startAudio = () => {
+      if (!on || v.paused) return;
+      if (Math.abs(a.currentTime - v.currentTime) > 0.25) a.currentTime = v.currentTime;
+      a.play().then(() => { if (a.volume < 1) ramp(1, 1200); }).catch(() => {});
+    };
     const setUp = () => {
       a = new Audio(btn.dataset.filmSound); a.preload = 'auto'; a.volume = 0;
-      v.addEventListener('timeupdate', () => { if (on) sync(); });
+      v.addEventListener('timeupdate', sync);
       v.addEventListener('pause', () => a.pause());
-      v.addEventListener('play', startAudio);
-      v.addEventListener('seeked', () => { if (on) a.currentTime = v.currentTime; });
+      v.addEventListener('waiting', () => a.pause());
+      v.addEventListener('playing', startAudio);
+      v.addEventListener('seeked', () => { if (on) { a.currentTime = v.currentTime; lastT = v.currentTime; } });
+      a.addEventListener('ended', () => { if (on && !v.paused) { a.currentTime = v.currentTime; a.play().catch(() => {}); } });
     };
     btn.addEventListener('click', () => {
       on = !on;
       btn.setAttribute('aria-pressed', on); btn.classList.toggle('playing', on);
       lbl.textContent = on ? 'Couper le son' : 'Activer le son';
-      if (on) { if (!a) setUp(); if (v.paused) v.play().catch(() => {}); a.currentTime = v.currentTime; startAudio(); }
+      if (on) { if (!a) setUp(); lastT = v.currentTime; if (v.paused) v.play().catch(() => {}); a.currentTime = v.currentTime; startAudio(); }
       else if (a) ramp(0, 500, () => a.pause());
     });
   });
