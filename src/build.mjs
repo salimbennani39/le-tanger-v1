@@ -714,7 +714,7 @@ ${closing('Votre séjour, <em>sur mesure.</em>')}`,
 });
 
 /* GALERIE */
-const galleryList = ['hero-pool-sunset', 'penthouse-1', 'ext-dusk-palms', 'feu-night-8450', 'pool-1', 'apt2-1', 'drone-pool', 'suitepool-1', 'ext-night-palms', 'penthouse-3', 'pool-dusk-2', 'apt1pano-1', 'drone-dusk-1', 'feu-night-8453', 'ext-entree', 'apt2-4', 'pool-salon', 'suitegarden-1', 'penthouse-4', 'ext-palms-day', 'pool-dusk-3', 'apt1sea-2', 'drone-sunset', 'studio-1', 'ext-lounge-1', 'feu-night-8462', 'pool-4', 'apt1pool-day', 'drone-sea-1', 'ext-night-palms2', 'ext-phone', 'pool-sunset-2'];
+const galleryList = ['hero-pool-sunset', 'penthouse-1', 'ext-dusk-palms', 'feu-night-8450', 'pool-1', 'drone-pool', 'suitepool-1', 'ext-night-palms', 'penthouse-3', 'apt1pano-1', 'drone-dusk-1', 'feu-night-8453', 'ext-entree', 'apt2-4', 'pool-salon', 'suitegarden-1', 'penthouse-4', 'ext-palms-day', 'pool-dusk-3', 'apt1sea-2', 'drone-sunset', 'studio-1', 'ext-lounge-1', 'feu-night-8462', 'pool-4', 'apt1pool-day', 'drone-sea-1', 'ext-night-palms2', 'pool-sunset-2'];
 page('galerie.html', {
   title: 'Galerie · Le Tanger', current: 'galerie.html',
   desc: 'Les résidences, les piscines, le feu et la lumière de Tanger en images.',
