@@ -17,9 +17,11 @@ cpSync(join(ROOT, 'src/assets/js'), join(ROOT, 'assets/js'), { recursive: true }
 /* ---------- helpers ---------- */
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 let P = ''; // relative prefix for current page
+/* version tag per image file: a re-edited photo gets a new URL, so browsers never show the old one */
+const imgVer = name => { try { return '?v=' + createHash('md5').update(readFileSync(join(ROOT, `assets/img/${name}-1200.webp`))).digest('hex').slice(0, 6); } catch { return ''; } };
 const img = (name, alt, { sizes = '100vw', eager = false, par = null, cls = '' } = {}) =>
-  `<img src="${P}assets/img/${name}-1200.webp" srcset="${P}assets/img/${name}-1200.webp 1200w, ${P}assets/img/${name}-2400.webp 2400w" sizes="${sizes}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"${par ? ` data-par="${par}"` : ''}${cls ? ` class="${cls}"` : ''}>`;
-const full = name => `${P}assets/img/${name}-2400.webp`;
+  `<img src="${P}assets/img/${name}-1200.webp${imgVer(name)}" srcset="${P}assets/img/${name}-1200.webp${imgVer(name)} 1200w, ${P}assets/img/${name}-2400.webp${imgVer(name)} 2400w" sizes="${sizes}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"${par ? ` data-par="${par}"` : ''}${cls ? ` class="${cls}"` : ''}>`;
+const full = name => `${P}assets/img/${name}-2400.webp${imgVer(name)}`;
 /* real pixel size of a webp, so gallery tiles keep each photo's own shape */
 const webpSize = name => {
   const b = readFileSync(join(ROOT, `assets/img/${name}-1200.webp`));
