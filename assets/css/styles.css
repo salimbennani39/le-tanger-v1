@@ -642,3 +642,5 @@ body{font-weight:400;letter-spacing:.005em}
 /* hero sound button */
 .hero-sound{position:absolute;z-index:3;right:var(--gutter);top:clamp(104px,14vh,140px)}
 @media (max-width:860px){.hero-sound{top:96px;right:20px}}
+.svc-strip{grid-template-columns:1.4fr 1fr}
+@media (max-width:860px){.svc-strip{grid-template-columns:1fr}}

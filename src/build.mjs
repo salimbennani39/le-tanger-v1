@@ -696,8 +696,7 @@ ${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au couche
 <section class="sec" style="padding-top:0">
   <div class="wrap svc-strip">
     <div class="frame clipin">${img('drone-coast', 'La côte de Tanger vue du ciel', { sizes: '(max-width:860px) 100vw, 40vw' })}</div>
-    <div class="frame clipin">${img('feu-night-8450', 'Une soirée autour du feu à la résidence', { sizes: '(max-width:860px) 100vw, 30vw' })}</div>
-    <div class="frame clipin">${img('ext-entree', 'L’entrée de la résidence le soir', { sizes: '(max-width:860px) 100vw, 30vw' })}</div>
+    <div class="frame clipin">${img('feu-night-8450', 'Une soirée autour du feu à la résidence', { sizes: '(max-width:860px) 100vw, 40vw' })}</div>
   </div>
 </section>
 <section class="sec ground-paper">
