@@ -897,7 +897,7 @@ legal('mentions-legales.html', 'Informations', 'Mentions légales',
       `Le Tanger Résidence Hôtelière<br>${site.address}<br>Téléphone : ${site.phone}<br>E-mail : <a href="mailto:${site.email}">${site.email}</a>`,
     ]],
     ['Hébergement', [
-      'GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.',
+      'Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis.',
     ]],
     ['Propriété intellectuelle', [
       'L’ensemble des contenus de ce site (textes, photographies, vidéos, logo) est la propriété de Le Tanger Résidence Hôtelière ou de leurs auteurs. Photographies : Fata Morgana. Toute reproduction sans autorisation préalable est interdite.',
