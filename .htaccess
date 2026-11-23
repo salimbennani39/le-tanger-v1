@@ -1,0 +1,24 @@
+# Hostinger (ignored by Vercel and GitHub Pages)
+Options -Indexes
+DirectoryIndex index.html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# source files, tools and git data are never served
+RewriteRule ^(\.git|src|tools|graphify-out)(/|$) - [F,L]
+RewriteRule ^(README\.md|BRIEF\.md|vercel\.json|\.gitignore|\.nojekyll)$ - [F,L]
+RewriteRule ^en$ /en/ [R=302,L]
+</IfModule>
+<IfModule mod_headers.c>
+# temporary test address: keep it out of search engines
+<If "%{HTTP_HOST} =~ /hostingersite\.com$/">
+Header set X-Robots-Tag "noindex, nofollow"
+</If>
+<FilesMatch "\.(webp|jpg|png|svg|mp4|css|js)$">
+Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache"
+</FilesMatch>
+</IfModule>
+AddType video/mp4 .mp4
+AddType image/webp .webp
