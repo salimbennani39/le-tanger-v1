@@ -7,6 +7,23 @@ RewriteEngine On
 RewriteRule ^(\.git|src|tools|graphify-out)(/|$) - [F,L]
 RewriteRule ^(README\.md|BRIEF\.md|vercel\.json|\.gitignore|\.nojekyll)$ - [F,L]
 RewriteRule ^en$ /en/ [R=302,L]
+# old WordPress addresses
+RewriteRule ^a-propos-de-nous/?$ /a-propos.html [R=301,L]
+RewriteRule ^blogs/?$ /blog.html [R=301,L]
+RewriteRule ^contactez-nous/?$ /contact.html [R=301,L]
+RewriteRule ^galerie/?$ /galerie.html [R=301,L]
+RewriteRule ^pool-day/?$ /pool-day.html [R=301,L]
+RewriteRule ^nos-biens/?$ /residences.html [R=301,L]
+RewriteRule ^ultimate-guide-sejourner-a-le-tanger-residence-hoteliere/?$ /blog.html [R=301,L]
+RewriteRule ^nos-biens/appart-1-chambre-piscine-privee/?$ /residences/appartement-1-chambre-piscine-privee.html [R=301,L]
+RewriteRule ^nos-biens/appart-1-chambre-vue-mer-panoramique/?$ /residences/appartement-1-chambre-vue-mer-panoramique.html [R=301,L]
+RewriteRule ^nos-biens/appart-1-chambre-vue-mer/?$ /residences/appartement-1-chambre-vue-mer.html [R=301,L]
+RewriteRule ^nos-biens/appart-2-chambres-vue-mer-panoramique/?$ /residences/appartement-2-chambres-vue-mer-panoramique.html [R=301,L]
+RewriteRule ^nos-biens/penthouse-panoramique-avec-piscine-privee-2-eme-bloc/?$ /residences/penthouse-piscine-privee-pavillon-2.html [R=301,L]
+RewriteRule ^nos-biens/penthouse-panoramique-avec-piscine-privee/?$ /residences/penthouse-piscine-privee-pavillon-3.html [R=301,L]
+RewriteRule ^nos-biens/studio-vue-piscine/?$ /residences/studio-vue-piscine.html [R=301,L]
+RewriteRule ^nos-biens/suite-piscine-privee/?$ /residences/suite-piscine-privee.html [R=301,L]
+RewriteRule ^nos-biens/suite-vue-jardin/?$ /residences/suite-vue-jardin.html [R=301,L]
 </IfModule>
 <IfModule mod_headers.c>
 # temporary test address: keep it out of search engines
