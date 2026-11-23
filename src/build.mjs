@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { site, rooms, drinks, faq, breakfast } from './data.mjs';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { translate } from './i18n/translate.mjs';
+import en from './i18n/en.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* cache-busting: a new version tag whenever the CSS or JS changes, so browsers never show an old stylesheet */
@@ -82,6 +84,9 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="https://letanger.com/assets/img/${ogImg}-1200.webp">
 <meta property="og:locale" content="fr_FR">
+<link rel="alternate" hreflang="fr" href="https://letanger.com/${path}">
+<link rel="alternate" hreflang="en" href="https://letanger.com/en/${path}">
+<link rel="alternate" hreflang="x-default" href="https://letanger.com/${path}">
 <link rel="icon" href="${P}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -95,7 +100,8 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
     <a class="logo" href="${P}index.html" aria-label="Le Tanger, accueil">${LOGO}<small>Résidence hôtelière</small></a>
     <nav class="nav" aria-label="Navigation principale">${nav}</nav>
     <div class="hdr-right">
-      <span class="sunset" title="Heure du coucher du soleil à Tanger aujourd'hui"><i></i>Coucher du soleil <span data-sunset class="num">--:--</span></span>
+      <span class="sunset" title="Heure du coucher du soleil à Tanger aujourd'hui"><i></i><span class="sunset-l">Coucher du soleil</span> <span data-sunset class="num">--:--</span></span>
+      <!--lang:hdr-->
       ${book('Réserver', 'btn btn-primary')}
       <button class="burger" aria-label="Ouvrir le menu"><span></span></button>
     </div>
@@ -104,7 +110,7 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <div class="menu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-top"><a class="logo" href="${P}index.html">${LOGO}<small>Résidence hôtelière</small></a><button class="close" aria-label="Fermer le menu">×</button></div>
   <nav>${[['index.html', 'Accueil'], ...NAV, ...MORE].map(([h, l]) => `<a href="${P}${h}">${l}</a>`).join('')}</nav>
-  <div class="menu-foot">${book('Réserver', 'btn btn-primary')}<a href="${site.phoneHref}">${site.phone}</a><span>Coucher du soleil ce soir à <span data-sunset>--:--</span></span></div>
+  <div class="menu-foot">${book('Réserver', 'btn btn-primary')}<a href="${site.phoneHref}">${site.phone}</a><span>Coucher du soleil ce soir à <span data-sunset>--:--</span></span><!--lang:menu--></div>
 </div>
 <main id="main">
 ${html}
@@ -151,7 +157,7 @@ function footer() {
         <li><a href="mailto:${site.email}">${site.email}</a></li>
         <li>Arrivée dès 15h00 · Départ 12h00</li></ul></div>
     </div>
-    <div class="ftr-bot"><span>© <span data-year></span> Le Tanger Résidence Hôtelière. Photographies : Fata Morgana.</span><span><a href="${P}mentions-legales.html">Mentions légales</a> · <a href="${P}confidentialite.html">Confidentialité</a> · <a href="${P}conditions.html">Conditions générales</a></span></div>
+    <div class="ftr-bot"><span>© <span data-year></span> Le Tanger Résidence Hôtelière. Photographies : Fata Morgana.</span><span><a href="${P}mentions-legales.html">Mentions légales</a> · <a href="${P}confidentialite.html">Confidentialité</a> · <a href="${P}conditions.html">Conditions générales</a> · <!--lang:ftr--></span></div>
   </div>
 </footer>`;
 }
@@ -902,12 +908,31 @@ legal('mentions-legales.html', 'Informations', 'Mentions légales',
   ]);
 
 /* ---------- write ---------- */
+/* French pages at the root, English pages under /en/ (same file names), made from the French ones by src/i18n */
+const langSwitch = (html, path, lang) => {
+  const depth = path.split('/').length - 1;
+  const other = lang === 'fr' ? '../'.repeat(depth) + 'en/' + path : '../'.repeat(depth + 1) + path;
+  const [code, name, label] = lang === 'fr' ? ['en', 'English', 'English version'] : ['fr', 'Français', 'Version française'];
+  const link = (cls, text) => `<a class="${cls}" href="${other}" hreflang="${code}" lang="${code}" data-lang-link aria-label="${label}">${text}</a>`;
+  const pair = lang === 'fr' ? `<span aria-current="true">FR</span>${link('', 'EN')}` : `${link('', 'FR')}<span aria-current="true">EN</span>`;
+  return html.replace('<!--lang:hdr-->', `<span class="lang">${pair}</span>`).replace('<!--lang:menu-->', link('lang-menu', name)).replace('<!--lang:ftr-->', link('', name));
+};
+const toEnglish = (html, missing) => translate(html, en, missing)
+  .replace('<html lang="fr">', '<html lang="en">')
+  .replace('content="fr_FR"', 'content="en_GB"')
+  .replaceAll('locale=fr', 'locale=en')
+  .replace(/(["\s,(])((?:\.\.\/)*)assets\//g, '$1../$2assets/');
+const missing = new Set();
 for (const p of pages) {
-  const out = join(ROOT, p.path);
+  const html = layout(p);
+  const out = join(ROOT, p.path), outEn = join(ROOT, 'en', p.path);
   mkdirSync(dirname(out), { recursive: true });
-  writeFileSync(out, layout(p));
+  mkdirSync(dirname(outEn), { recursive: true });
+  writeFileSync(out, langSwitch(html, p.path, 'fr'));
+  writeFileSync(outEn, langSwitch(toEnglish(html, missing), p.path, 'en'));
 }
-console.log(`built ${pages.length} pages`);
+if (missing.size) console.log(`NO ENGLISH YET (add to src/i18n/en.mjs):\n- ${[...missing].join('\n- ')}`);
+console.log(`built ${pages.length} pages in French and English`);
 
 writeFileSync(join(ROOT, 'evenements.html'), '<!doctype html><meta charset="utf-8"><title>Événements · Le Tanger</title><meta http-equiv="refresh" content="0; url=celebrations.html#evenements"><link rel="canonical" href="celebrations.html#evenements"><a href="celebrations.html#evenements">Célébrations & événements</a>');
 

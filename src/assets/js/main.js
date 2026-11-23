@@ -6,6 +6,15 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+  /* ---------- language: follows the page (<html lang>) ---------- */
+  const EN = document.documentElement.lang === 'en';
+  const LOC = EN ? 'en-GB' : 'fr-FR';
+  const T = EN
+    ? { pick: 'Select', pickDates: 'Choose your dates', pickIn: 'Choose your check-in', pickOut: 'Choose your check-out', prevM: 'Previous month', nextM: 'Next month', ok: 'Confirm', night: 'night', sunset: 'sunset', noon: 'afternoon', dark: 'night', play: 'Listen to the sea', mute: 'Turn sound off', dow: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], sep: ': ' }
+    : { pick: 'Choisir', pickDates: 'Choisir vos dates', pickIn: 'Choisissez votre arrivée', pickOut: 'Choisissez votre départ', prevM: 'Mois précédent', nextM: 'Mois suivant', ok: 'Valider', night: 'nuit', sunset: 'coucher', noon: 'après-midi', dark: 'nuit', play: 'Écouter la mer', mute: 'Couper le son', dow: ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'], sep: ' : ' };
+  /* keep the visitor on the same section (#anchor) when switching language */
+  $$('[data-lang-link]').forEach(a => a.addEventListener('click', () => { if (location.hash) a.hash = location.hash; }));
+
   /* ---------- dates in Tangier ---------- */
   const ymd = d => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
   const today = new Date();
@@ -14,7 +23,7 @@
   /* ---------- booking links: same link everywhere, dates refreshed daily ---------- */
   function bookUrl(inD, outD, adults = 2, children = 0) {
     const q = new URLSearchParams();
-    q.set('locale', 'fr');
+    q.set('locale', EN ? 'en' : 'fr');
     q.set('items[0][adults]', adults);
     q.set('items[0][children]', children);
     q.set('items[0][infants]', 0);
@@ -28,9 +37,9 @@
   $$('[data-book]').forEach(a => { a.href = defaultBook; a.target = '_blank'; a.rel = 'noopener'; });
 
   /* ---------- date picker (replaces the browser's native calendar) ---------- */
-  const fmtField = new Intl.DateTimeFormat('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
-  const fmtMonth = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' });
-  const fmtFull = new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full' });
+  const fmtField = new Intl.DateTimeFormat(LOC, { weekday: 'short', day: 'numeric', month: 'short' });
+  const fmtMonth = new Intl.DateTimeFormat(LOC, { month: 'long', year: 'numeric' });
+  const fmtFull = new Intl.DateTimeFormat(LOC, { dateStyle: 'full' });
   const toD = s => new Date(s + 'T12:00:00');
   const addD = (s, n) => { const d = toD(s); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
   const addMonth = (ym, n) => { const [y, m] = ym.split('-').map(Number); const d = new Date(y, m - 1 + n, 1); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; };
@@ -43,14 +52,14 @@
     const field = inp => { inp.type = 'hidden'; const b = document.createElement('button'); b.type = 'button'; b.className = 'dp-field'; b.setAttribute('aria-haspopup', 'dialog'); inp.after(b); return b; };
     const bIn = field(iIn), bOut = field(iOut);
     const pop = document.createElement('div');
-    pop.className = 'dp'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', 'Choisir vos dates');
+    pop.className = 'dp'; pop.hidden = true; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', T.pickDates);
     form.classList.add('has-dp'); form.append(pop);
     let view = TODAY.slice(0, 7);
 
     const sync = () => {
       iIn.value = start; iOut.value = end;
-      bIn.textContent = start ? fmtField.format(toD(start)) : 'Choisir';
-      bOut.textContent = end ? fmtField.format(toD(end)) : 'Choisir';
+      bIn.textContent = start ? fmtField.format(toD(start)) : T.pick;
+      bOut.textContent = end ? fmtField.format(toD(end)) : T.pick;
       bIn.classList.toggle('empty', !start); bOut.classList.toggle('empty', !end);
       bIn.classList.toggle('active', !pop.hidden && mode === 'start');
       bOut.classList.toggle('active', !pop.hidden && mode === 'end');
@@ -74,16 +83,16 @@
         ].filter(Boolean).join(' ');
         cells += `<button type="button" data-d="${s}" class="${cls}"${s < TODAY ? ' disabled' : ''} aria-label="${fmtFull.format(toD(s))}">${d}</button>`;
       }
-      return `<div class="dp-month"><p class="dp-title">${fmtMonth.format(first)}</p><div class="dp-dow">${['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'].map(x => `<span>${x}</span>`).join('')}</div><div class="dp-days">${cells}</div></div>`;
+      return `<div class="dp-month"><p class="dp-title">${fmtMonth.format(first)}</p><div class="dp-dow">${T.dow.map(x => `<span>${x}</span>`).join('')}</div><div class="dp-days">${cells}</div></div>`;
     };
     const render = (focusD) => {
       const two = innerWidth >= 720;
       const nights = start && end ? Math.round((toD(end) - toD(start)) / 864e5) : 0;
-      const hint = mode === 'start' ? 'Choisissez votre arrivée' : 'Choisissez votre départ';
+      const hint = mode === 'start' ? T.pickIn : T.pickOut;
       const canPrev = view > TODAY.slice(0, 7);
-      pop.innerHTML = `<div class="dp-head"><button type="button" class="dp-nav" data-nav="-1" aria-label="Mois précédent"${canPrev ? '' : ' disabled'}>&#8592;</button><button type="button" class="dp-nav" data-nav="1" aria-label="Mois suivant">&#8594;</button></div>
+      pop.innerHTML = `<div class="dp-head"><button type="button" class="dp-nav" data-nav="-1" aria-label="${T.prevM}"${canPrev ? '' : ' disabled'}>&#8592;</button><button type="button" class="dp-nav" data-nav="1" aria-label="${T.nextM}">&#8594;</button></div>
         <div class="dp-months">${month(view)}${two ? month(addMonth(view, 1)) : ''}</div>
-        <div class="dp-foot"><span>${nights && mode === 'start' ? `${nights} nuit${nights > 1 ? 's' : ''}` : hint}</span><button type="button" class="dp-done">Valider</button></div>`;
+        <div class="dp-foot"><span>${nights && mode === 'start' ? `${nights} ${T.night}${nights > 1 ? 's' : ''}` : hint}</span><button type="button" class="dp-done">${T.ok}</button></div>`;
       sync();
       if (focusD) pop.querySelector(`[data-d="${focusD}"]`)?.focus({ preventScroll: true });
     };
@@ -164,7 +173,7 @@
     return new Date((J + 0.5 - J1970) * dayMs);
   }
   const set = sunset(new Date(), 35.7595, -5.834);
-  const hhmm = new Intl.DateTimeFormat('fr-FR', { timeZone: TZ, hour: '2-digit', minute: '2-digit' }).format(set);
+  const hhmm = new Intl.DateTimeFormat(LOC, { timeZone: TZ, hour: '2-digit', minute: '2-digit' }).format(set);
   $$('[data-sunset]').forEach(el => el.textContent = hhmm);
 
   /* ---------- header ---------- */
@@ -206,7 +215,7 @@
     sun._update = p => {
       disc.style.transform = `translateY(${(p * 96).toFixed(1)}px)`;
       const i = Math.min(sunTimes.length - 1, Math.floor(p * sunTimes.length));
-      t.textContent = p > 0.5 && p < 0.68 ? 'coucher · ' + hhmm : (p < 0.5 ? 'après-midi' : 'nuit');
+      t.textContent = p > 0.5 && p < 0.68 ? T.sunset + ' · ' + hhmm : (p < 0.5 ? T.noon : T.dark);
     };
   }
 
@@ -309,7 +318,7 @@
   $$('form[data-wa]').forEach(f => f.addEventListener('submit', e => {
     e.preventDefault();
     const lines = [f.dataset.wa];
-    $$('[name]', f).forEach(el => { let v = el.value.trim(); if (/^\d{4}-\d{2}-\d{2}$/.test(v)) v = fmtFull.format(toD(v)); if (v) lines.push(`${el.dataset.label || el.name} : ${v}`); });
+    $$('[name]', f).forEach(el => { let v = el.value.trim(); if (/^\d{4}-\d{2}-\d{2}$/.test(v)) v = fmtFull.format(toD(v)); if (v) lines.push(`${el.dataset.label || el.name}${T.sep}${v}`); });
     window.open('https://wa.me/212656103761?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener');
   }));
 
@@ -372,7 +381,7 @@
     const mute = () => { if (!ctx) return; fade(0, 0.9); setTimeout(() => { if (!on || !visible) ctx.suspend(); }, 1000); };
     const sync = () => {
       btn.setAttribute('aria-pressed', on); btn.classList.toggle('playing', on);
-      lbl.textContent = on ? 'Couper le son' : 'Écouter la mer';
+      lbl.textContent = on ? T.mute : T.play;
     };
 
     btn.addEventListener('click', () => { on = !on; sync(); on && visible ? play() : mute(); });
