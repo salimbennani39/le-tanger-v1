@@ -641,7 +641,7 @@ add({
   'Téléphone : +212 656 103 761': 'Phone: +212 656 103 761',
   'E-mail :': 'Email:',
   'Hébergement': 'Hosting',
-  'Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis.': 'Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, United States.',
+  'HOSTINGER INTERNATIONAL LIMITED, 61 Lordou Vironos, 6023 Larnaca, Chypre.': 'HOSTINGER INTERNATIONAL LIMITED, 61 Lordou Vironos, 6023 Larnaca, Cyprus.',
   'Propriété intellectuelle': 'Intellectual property',
   'L’ensemble des contenus de ce site (textes, photographies, vidéos, logo) est la propriété de Le Tanger Résidence Hôtelière ou de leurs auteurs. Photographies : Fata Morgana. Toute reproduction sans autorisation préalable est interdite.': 'All content on this website (text, photographs, videos, logo) is the property of Le Tanger Résidence Hôtelière or of its authors. Photography: Fata Morgana. Any reproduction without prior permission is prohibited.',
   'Données personnelles': 'Personal data',

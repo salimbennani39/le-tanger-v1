@@ -897,7 +897,7 @@ legal('mentions-legales.html', 'Informations', 'Mentions légales',
       `Le Tanger Résidence Hôtelière<br>${site.address}<br>Téléphone : ${site.phone}<br>E-mail : <a href="mailto:${site.email}">${site.email}</a>`,
     ]],
     ['Hébergement', [
-      'Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis.',
+      'HOSTINGER INTERNATIONAL LIMITED, 61 Lordou Vironos, 6023 Larnaca, Chypre.',
     ]],
     ['Propriété intellectuelle', [
       'L’ensemble des contenus de ce site (textes, photographies, vidéos, logo) est la propriété de Le Tanger Résidence Hôtelière ou de leurs auteurs. Photographies : Fata Morgana. Toute reproduction sans autorisation préalable est interdite.',
