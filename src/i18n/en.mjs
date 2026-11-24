@@ -358,6 +358,7 @@ add({
   'Le salon est construit en pierre, en contrebas du jardin, face à la mer. Il suffit de demander : nous allumons le feu pour vous, été comme hiver.': 'The lounge is built of stone, set below the garden, facing the sea. Just ask: we light the fire for you, summer and winter alike.',
   'Quand': 'When',
   "Toute l'année, sur demande": 'All year round, on request',
+  '(quand la météo le permet)': '(weather permitting)',
   'Pour qui': 'For whom',
   'Résidents et clients du Pool Day': 'Residents and Pool Day guests',
   'Le feu': 'The fire',

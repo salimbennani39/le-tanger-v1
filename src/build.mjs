@@ -555,7 +555,7 @@ ${pageHero({ media: 'feu-night-8462', alt: 'Le feu dans le salon de pierre', eye
     <div class="rv rv-d1">
       <p class="lead" style="color:#C9B39B">Le salon est construit en pierre, en contrebas du jardin, face à la mer. Il suffit de demander : nous allumons le feu pour vous, été comme hiver.</p>
       <dl class="facts" style="margin-top:2rem">
-        <div><dt>Quand</dt><dd>Toute l'année, sur demande</dd></div>
+        <div><dt>Quand</dt><dd>Toute l'année, sur demande<br>(quand la météo le permet)</dd></div>
         <div><dt>Pour qui</dt><dd>Résidents et clients du Pool Day</dd></div>
         <div><dt>Le feu</dt><dd>Offert</dd></div>
         <div><dt>À la carte</dt><dd>Thé, café et pâtisseries marocaines</dd></div>
