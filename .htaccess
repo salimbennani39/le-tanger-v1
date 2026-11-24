@@ -6,7 +6,7 @@ RewriteEngine On
 # source files, tools and git data are never served
 RewriteRule ^(\.git|src|tools|graphify-out)(/|$) - [F,L]
 RewriteRule ^(README\.md|BRIEF\.md|vercel\.json|\.gitignore|\.nojekyll)$ - [F,L]
-RewriteRule ^en$ /en/ [R=302,L]
+RewriteRule ^(en|es)$ /$1/ [R=302,L]
 # old WordPress addresses
 RewriteRule ^a-propos-de-nous/?$ /a-propos.html [R=301,L]
 RewriteRule ^blogs/?$ /blog.html [R=301,L]

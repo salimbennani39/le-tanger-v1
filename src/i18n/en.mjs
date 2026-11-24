@@ -340,6 +340,8 @@ add({
   'Envoyer sur WhatsApp': 'Send on WhatsApp',
   "Votre message s'ouvre dans WhatsApp, prêt à être envoyé.": 'Your message opens in WhatsApp, ready to send.',
   'Carte : Le Tanger Résidence Hôtelière': 'Map: Le Tanger Résidence Hôtelière',
+  'Zoomer': 'Zoom in',
+  'Dézoomer': 'Zoom out',
   'Galerie · Le Tanger': 'Gallery · Le Tanger',
   'Les résidences, les piscines, le feu et la lumière de Tanger en images.': 'The residences, the pools, the fire and the light of Tangier in pictures.',
   'La résidence et ses piscines vues du ciel': 'The residence and its pools from the air',

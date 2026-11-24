@@ -7,13 +7,33 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
   /* ---------- language: follows the page (<html lang>) ---------- */
-  const EN = document.documentElement.lang === 'en';
-  const LOC = EN ? 'en-GB' : 'fr-FR';
-  const T = EN
-    ? { pick: 'Select', pickDates: 'Choose your dates', pickIn: 'Choose your check-in', pickOut: 'Choose your check-out', prevM: 'Previous month', nextM: 'Next month', ok: 'Confirm', night: 'night', sunset: 'sunset', noon: 'afternoon', dark: 'night', play: 'Listen to the sea', mute: 'Turn sound off', dow: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], sep: ': ' }
-    : { pick: 'Choisir', pickDates: 'Choisir vos dates', pickIn: 'Choisissez votre arrivée', pickOut: 'Choisissez votre départ', prevM: 'Mois précédent', nextM: 'Mois suivant', ok: 'Valider', night: 'nuit', sunset: 'coucher', noon: 'après-midi', dark: 'nuit', play: 'Écouter la mer', mute: 'Couper le son', dow: ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'], sep: ' : ' };
+  const LANG = ['en', 'es'].includes(document.documentElement.lang) ? document.documentElement.lang : 'fr';
+  const LOC = { fr: 'fr-FR', en: 'en-GB', es: 'es-ES' }[LANG];
+  const T = {
+    fr: { pick: 'Choisir', pickDates: 'Choisir vos dates', pickIn: 'Choisissez votre arrivée', pickOut: 'Choisissez votre départ', prevM: 'Mois précédent', nextM: 'Mois suivant', ok: 'Valider', night: 'nuit', sunset: 'coucher', noon: 'après-midi', dark: 'nuit', play: 'Écouter la mer', mute: 'Couper le son', dow: ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'], sep: ' : ' },
+    en: { pick: 'Select', pickDates: 'Choose your dates', pickIn: 'Choose your check-in', pickOut: 'Choose your check-out', prevM: 'Previous month', nextM: 'Next month', ok: 'Confirm', night: 'night', sunset: 'sunset', noon: 'afternoon', dark: 'night', play: 'Listen to the sea', mute: 'Turn sound off', dow: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], sep: ': ' },
+    es: { pick: 'Elegir', pickDates: 'Elija sus fechas', pickIn: 'Elija su llegada', pickOut: 'Elija su salida', prevM: 'Mes anterior', nextM: 'Mes siguiente', ok: 'Confirmar', night: 'noche', sunset: 'puesta de sol', noon: 'tarde', dark: 'noche', play: 'Escuchar el mar', mute: 'Silenciar', dow: ['lun', 'mar', 'mié', 'jue', 'vie', 'sáb', 'dom'], sep: ': ' },
+  }[LANG];
   /* keep the visitor on the same section (#anchor) when switching language */
   $$('[data-lang-link]').forEach(a => a.addEventListener('click', () => { if (location.hash) a.hash = location.hash; }));
+
+  /* ---------- contact map: + and − load the Google map at another zoom; the old one stays visible until the new one is ready ---------- */
+  $$('[data-map]').forEach(box => {
+    const first = $('iframe', box), btns = $$('[data-zoom]', box);
+    const base = first.src;
+    let z = 15;
+    btns.forEach(b => b.addEventListener('click', () => {
+      z = Math.min(19, Math.max(8, z + Number(b.dataset.zoom)));
+      btns.forEach(x => { x.disabled = Number(x.dataset.zoom) > 0 ? z === 19 : z === 8; });
+      const shown = $('iframe.map:not(.is-next)', box), old = $('iframe.is-next', box);
+      const next = shown.cloneNode();
+      next.loading = 'eager';
+      next.classList.add('is-next');
+      next.src = base.replace(/z=15$/, 'z=' + z);
+      if (old) old.replaceWith(next); else shown.after(next);
+      next.addEventListener('load', () => setTimeout(() => { if (!next.isConnected) return; shown.remove(); next.classList.remove('is-next'); }, 600), { once: true });
+    }));
+  });
 
   /* ---------- dates in Tangier ---------- */
   const ymd = d => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
@@ -23,7 +43,7 @@
   /* ---------- booking links: same link everywhere, dates refreshed daily ---------- */
   function bookUrl(inD, outD, adults = 2, children = 0) {
     const q = new URLSearchParams();
-    q.set('locale', EN ? 'en' : 'fr');
+    q.set('locale', LANG);
     q.set('items[0][adults]', adults);
     q.set('items[0][children]', children);
     q.set('items[0][infants]', 0);

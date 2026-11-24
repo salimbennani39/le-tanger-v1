@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { translate } from './i18n/translate.mjs';
 import en from './i18n/en.mjs';
+import es from './i18n/es.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 /* cache-busting: a new version tag whenever the CSS or JS changes, so browsers never show an old stylesheet */
@@ -86,6 +87,7 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <meta property="og:locale" content="fr_FR">
 <link rel="alternate" hreflang="fr" href="https://letanger.com/${path}">
 <link rel="alternate" hreflang="en" href="https://letanger.com/en/${path}">
+<link rel="alternate" hreflang="es" href="https://letanger.com/es/${path}">
 <link rel="alternate" hreflang="x-default" href="https://letanger.com/${path}">
 <link rel="icon" href="${P}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -796,7 +798,7 @@ page('contact.html', {
     </div>
   </div>
 </section>
-<section class="sec" style="padding-top:0"><div class="wrap"><iframe class="map" src="${site.mapEmbed}" loading="lazy" title="Carte : Le Tanger Résidence Hôtelière" referrerpolicy="no-referrer-when-downgrade"></iframe></div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><div class="mapbox" data-map><iframe class="map" src="${site.mapEmbed}&z=15" loading="lazy" title="Carte : Le Tanger Résidence Hôtelière" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="mapzoom"><button type="button" data-zoom="1" aria-label="Zoomer">+</button><button type="button" data-zoom="-1" aria-label="Dézoomer">−</button></div></div></div></section>
 ${closing()}`,
 });
 
@@ -899,31 +901,37 @@ legal('mentions-legales.html', 'Informations', 'Mentions légales',
   ]);
 
 /* ---------- write ---------- */
-/* French pages at the root, English pages under /en/ (same file names), made from the French ones by src/i18n */
+/* French pages at the root, other languages in their own folder (same file names), made from the French ones by src/i18n */
+const LANGS = [
+  { code: 'fr', tag: 'FR', name: 'Français', label: 'Version française', dir: '' },
+  { code: 'en', tag: 'EN', name: 'English', label: 'English version', dir: 'en/', dict: en, og: 'en_GB' },
+  { code: 'es', tag: 'ES', name: 'Español', label: 'Versión en español', dir: 'es/', dict: es, og: 'es_ES' },
+];
 const langSwitch = (html, path, lang) => {
-  const depth = path.split('/').length - 1;
-  const other = lang === 'fr' ? '../'.repeat(depth) + 'en/' + path : '../'.repeat(depth + 1) + path;
-  const [code, name, label] = lang === 'fr' ? ['en', 'English', 'English version'] : ['fr', 'Français', 'Version française'];
-  const link = (cls, text) => `<a class="${cls}" href="${other}" hreflang="${code}" lang="${code}" data-lang-link aria-label="${label}">${text}</a>`;
-  const pair = lang === 'fr' ? `<span aria-current="true">FR</span>${link('', 'EN')}` : `${link('', 'FR')}<span aria-current="true">EN</span>`;
-  return html.replace('<!--lang:hdr-->', `<span class="lang">${pair}</span>`).replace('<!--lang:menu-->', link('lang-menu', name)).replace('<!--lang:ftr-->', link('', name));
+  const up = '../'.repeat(path.split('/').length - 1 + (lang.dir ? 1 : 0));
+  const link = (l, cls, text) => `<a${cls ? ` class="${cls}"` : ''} href="${up}${l.dir}${path}" hreflang="${l.code}" lang="${l.code}" data-lang-link aria-label="${l.label}">${text}</a>`;
+  const others = LANGS.filter(l => l !== lang);
+  return html
+    .replace('<!--lang:hdr-->', `<span class="lang">${LANGS.map(l => (l === lang ? `<span aria-current="true">${l.tag}</span>` : link(l, '', l.tag))).join('')}</span>`)
+    .replace('<!--lang:menu-->', `<span class="lang-menus">${others.map(l => link(l, 'lang-menu', l.name)).join('')}</span>`)
+    .replace('<!--lang:ftr-->', others.map(l => link(l, '', l.name)).join(' · '));
 };
-const toEnglish = (html, missing) => translate(html, en, missing)
-  .replace('<html lang="fr">', '<html lang="en">')
-  .replace('content="fr_FR"', 'content="en_GB"')
-  .replaceAll('locale=fr', 'locale=en')
+const toLang = (html, lang, missing) => translate(html, lang.dict, missing)
+  .replace('<html lang="fr">', `<html lang="${lang.code}">`)
+  .replace('content="fr_FR"', `content="${lang.og}"`)
+  .replaceAll('locale=fr', `locale=${lang.code}`)
   .replace(/(["\s,(])((?:\.\.\/)*)assets\//g, '$1../$2assets/');
-const missing = new Set();
+const missing = Object.fromEntries(LANGS.map(l => [l.code, new Set()]));
 for (const p of pages) {
   const html = layout(p);
-  const out = join(ROOT, p.path), outEn = join(ROOT, 'en', p.path);
-  mkdirSync(dirname(out), { recursive: true });
-  mkdirSync(dirname(outEn), { recursive: true });
-  writeFileSync(out, langSwitch(html, p.path, 'fr'));
-  writeFileSync(outEn, langSwitch(toEnglish(html, missing), p.path, 'en'));
+  for (const l of LANGS) {
+    const out = join(ROOT, l.dir, p.path);
+    mkdirSync(dirname(out), { recursive: true });
+    writeFileSync(out, langSwitch(l.dict ? toLang(html, l, missing[l.code]) : html, p.path, l));
+  }
 }
-if (missing.size) console.log(`NO ENGLISH YET (add to src/i18n/en.mjs):\n- ${[...missing].join('\n- ')}`);
-console.log(`built ${pages.length} pages in French and English`);
+for (const l of LANGS) if (missing[l.code].size) console.log(`NO ${l.name.toUpperCase()} YET (add to src/i18n/${l.code}.mjs):\n- ${[...missing[l.code]].join('\n- ')}`);
+console.log(`built ${pages.length} pages in ${LANGS.map(l => l.name).join(', ')}`);
 
 writeFileSync(join(ROOT, 'evenements.html'), '<!doctype html><meta charset="utf-8"><title>Événements · Le Tanger</title><meta http-equiv="refresh" content="0; url=celebrations.html#evenements"><link rel="canonical" href="celebrations.html#evenements"><a href="celebrations.html#evenements">Célébrations & événements</a>');
 
