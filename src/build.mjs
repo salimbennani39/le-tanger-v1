@@ -252,7 +252,7 @@ const conciergeTeaser = () => `
 <section class="sec ground-paper" id="conciergerie">
   <div class="wrap">
     <div class="split-head"><div><p class="eyebrow rv">Conciergerie</p><h2 class="display d-l rv rv-d1">Tanger, <em>on s’occupe de vous.</em></h2></div>
-    <div><p class="lead rv rv-d2">Une table au port, un transfert depuis l’aéroport, une excursion à Chefchaouen, un dîner privé : demandez, nous organisons. Un service inclus dans votre séjour.</p>
+    <div><p class="lead rv rv-d2">Une table au port, un transfert depuis l’aéroport, une excursion à Chefchaouen, un dîner privé : demandez, nous l’organisons. Un service inclus dans votre séjour.</p>
     <a class="btn btn-line rv rv-d3" style="margin-top:2rem" href="${P}conciergerie.html">Découvrir la conciergerie ${icon.arrow}</a></div></div>
     <ul class="svc-chips rv">${conciergeServices.map(([t]) => `<li>${t}</li>`).join('')}</ul>
   </div>

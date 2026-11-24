@@ -115,7 +115,7 @@ add({
   'Quand le soleil tombe,': 'When the sun goes down,',
   'le feu peut s’allumer.': 'the fire can be lit.',
   "Un salon de pierre creusé à côté de la piscine, des coussins, un thé à la menthe. Le feu s'allume à votre demande, toute l'année.": 'A sunken stone lounge beside the pool, cushions, a mint tea. The fire is lit at your request, all year round.',
-  'Une table au port, un transfert depuis l’aéroport, une excursion à Chefchaouen, un dîner privé : demandez, nous organisons. Un service inclus dans votre séjour.': 'A table by the port, an airport transfer, a trip to Chefchaouen, a private dinner: ask, and we arrange it. A service included in your stay.',
+  'Une table au port, un transfert depuis l’aéroport, une excursion à Chefchaouen, un dîner privé : demandez, nous l’organisons. Un service inclus dans votre séjour.': 'A table by the port, an airport transfer, a trip to Chefchaouen, a private dinner: ask, and we arrange it. A service included in your stay.',
   'Découvrir la conciergerie': 'Discover the concierge',
   'Vos moments': 'Your moments',
   'Un anniversaire, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower.': 'A birthday, a wedding night, a Valentine’s Day. A baby shower, a bridal shower.',
