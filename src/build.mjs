@@ -445,7 +445,7 @@ ${pageHero({ media: r.hero || r.imgs[0], alt: roomPlain(r), eyebrow: `<a href="$
         <div><b class="num">${r.beds.match(/\d/g).reduce((a, b) => a + +b, 0) > 2 ? '2' : '1'}</b><span>Chambre${r.title.includes('2') || r.title === 'Penthouse' ? 's' : ''}</span></div>
       </div>
       <div class="stack">${r.body.map(p => `<p class="lead" style="color:var(--fg)">${p}</p>`).join('')}</div>
-      <p class="muted" style="margin-top:1.4rem">Literie : ${r.beds}.</p>
+      <p class="muted" style="margin-top:1.4rem">Literie : ${r.beds}.${r.sofaBed ? '<br>(Divan-lit en supplément, sur demande)' : ''}</p>
     </div>
     <aside class="sticky">
       <p class="eyebrow">Équipements</p>

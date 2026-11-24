@@ -531,6 +531,7 @@ add({
   'Literie : 1 lit double ou 2 lits simples.': 'Beds: 1 double bed or 2 single beds.',
   'Literie : 1 lit double + 2 lits simples.': 'Beds: 1 double bed + 2 single beds.',
   'Literie : 1 lit double.': 'Beds: 1 double bed.',
+  '(Divan-lit en supplément, sur demande)': '(Sofa bed on request, extra charge)',
   'Literie : 2 lits simples.': 'Beds: 2 single beds.',
 
   "Un appartement moderne et lumineux situé en rez-de-jardin, avec un lit double ou deux lits simples, une salle de bain élégante, un salon raffiné et une cuisine équipée. L'option idéale pour un séjour à deux.": 'A bright, modern apartment on the garden level, with one double bed or two single beds, an elegant bathroom, a refined living room and an equipped kitchen. The ideal choice for a stay for two.',

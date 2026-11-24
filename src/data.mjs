@@ -40,7 +40,7 @@ export const rooms = [
     hover: 'penthouse-salon',
     title: 'Penthouse', sub: 'Piscine privée · Pavillon 3',
     tags: ['piscine', 'mer', 'famille'],
-    surface: 120, beds: '1 lit double + 2 lits simples', baths: 2, guests: '4 à 6',
+    surface: 120, beds: '1 lit double + 2 lits simples', sofaBed: true, baths: 2, guests: '4 à 6',
     hook: 'Le joyau de la résidence : une piscine suspendue et une terrasse plein ciel face à la Méditerranée.',
     body: [
       "Un penthouse d'exception avec une piscine privée suspendue et une vue panoramique sur la Méditerranée. Sa vaste terrasse à ciel ouvert offre un cadre exclusif, pour des moments de détente en famille ou entre amis.",
@@ -54,7 +54,7 @@ export const rooms = [
     cover: 'ph2-2', hover: 'ph2-1',
     title: 'Penthouse', sub: 'Piscine privée · Pavillon 2',
     tags: ['piscine', 'mer', 'famille'],
-    surface: 120, beds: '1 lit double + 2 lits simples', baths: 2, guests: '4 à 6',
+    surface: 120, beds: '1 lit double + 2 lits simples', sofaBed: true, baths: 2, guests: '4 à 6',
     hook: 'Une terrasse plein ciel, sa piscine privée et la Méditerranée à l’horizon.',
     body: [
       "Un penthouse panoramique avec piscine privée, dans le pavillon 2 de la résidence. Sa terrasse ouverte sur les collines et la mer offre un cadre exclusif, en famille ou entre amis.",
@@ -96,7 +96,7 @@ export const rooms = [
     cover: 'suitepool-salon', hover: 'suitepool-palms',
     title: 'Suite', sub: 'Piscine privée',
     tags: ['piscine', 'couple'],
-    surface: 85, beds: '1 lit double', baths: 1, guests: '1 à 2',
+    surface: 85, beds: '1 lit double', sofaBed: true, baths: 1, guests: '1 à 2',
     hook: 'Pensée pour deux : une terrasse ensoleillée, la mer au loin et votre propre piscine.',
     body: [
       "Une escapade romantique dans une suite élégante avec piscine privée. Conçue pour les couples, elle séduit par sa terrasse ensoleillée avec vue sur mer, son design raffiné et son ambiance intimiste.",
@@ -139,7 +139,7 @@ export const rooms = [
     cover: 'suitegarden-3', hover: 'suitegarden-1',
     title: 'Suite', sub: 'Vue jardin',
     tags: ['jardin', 'couple'],
-    surface: 35, beds: '1 lit double', baths: 1, guests: '2 à 3',
+    surface: 35, beds: '1 lit double', sofaBed: true, baths: 1, guests: '2 à 3',
     hook: 'Nichée dans la verdure, une terrasse privative ouverte sur le jardin.',
     body: [
       "Nichée dans un cadre verdoyant, à l'étage ou au niveau du jardin, la Suite Vue Jardin réunit calme et design contemporain. Idéale pour les couples ou les petites familles.",
