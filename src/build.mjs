@@ -151,7 +151,7 @@ function footer() {
         <li><a href="${P}contact.html">Contact</a></li>
         <li>${book('Réserver en ligne', '')}</li></ul></div>
       <div><h4>Nous joindre</h4><ul>
-        <li>${site.address}</li>
+        <li><a href="${site.maps}" target="_blank" rel="noopener">${site.address}</a></li>
         <li><a href="${site.phoneHref}">${site.phone}</a></li>
         <li><a href="${site.phone2Href}">${site.phone2}</a></li>
         <li><a href="mailto:${site.email}">${site.email}</a></li>
@@ -683,7 +683,7 @@ page('conciergerie.html', {
   title: 'Conciergerie · Le Tanger', current: 'conciergerie.html', ogImg: 'drone-sunset',
   desc: 'Dîners privés, réservations de restaurants, transferts aéroport, excursions, spa et hammam : la conciergerie de Le Tanger organise votre séjour à Tanger. Service inclus.',
   body: () => `
-${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au coucher du soleil', eyebrow: 'Conciergerie', title: 'Tanger, <em>on s’occupe de vous.</em>', lead: 'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous organisons.' })}
+${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au coucher du soleil', eyebrow: 'Conciergerie', title: 'Tanger, <em>on s’occupe de vous.</em>', lead: 'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous l’organisons.' })}
 <section class="sec">
   <div class="wrap">
     <div class="split-head"><div><p class="eyebrow rv">Inclus dans votre séjour</p><h2 class="display d-l rv rv-d1">Un seul message, <em>tout est organisé.</em></h2></div><p class="lead rv rv-d2">Notre conciergerie connaît Tanger par cœur. Elle réserve, organise et confirme pour vous, sans frais : le service est compris dans le prix de votre logement.</p></div>

@@ -10,7 +10,7 @@ export const site = {
   phone2Href: 'tel:+212808534327',
   email: 'direction@letanger.com',
   whatsapp: 'https://wa.me/212656103761',
-  maps: 'https://www.google.com/maps/search/?api=1&query=Le+Tanger+R%C3%A9sidence+H%C3%B4teli%C3%A8re+Tanger',
+  maps: 'https://www.google.com/maps?cid=6150718654187639803',
   mapEmbed: 'https://www.google.com/maps?q=Le+Tanger+R%C3%A9sidence+H%C3%B4teli%C3%A8re,+Tanger&output=embed',
   social: {
     instagram: 'https://www.instagram.com/le.tanger/',

@@ -294,7 +294,7 @@ add({
   'La résidence et le détroit au coucher du soleil': 'The residence and the strait at sunset',
   'Tanger,': 'In Tangier,',
   'on s’occupe de vous.': 'we take care of you.',
-  'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous organisons.': 'A table, a driver, an excursion, a private dinner. Tell us what you would enjoy and we arrange it.',
+  'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous l’organisons.': 'A table, a driver, an excursion, a private dinner. Tell us what you would enjoy and we arrange it.',
   'Inclus dans votre séjour': 'Included in your stay',
   'Un seul message,': 'One message,',
   'tout est organisé.': 'everything is arranged.',
