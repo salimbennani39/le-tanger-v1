@@ -192,7 +192,7 @@ export const drinks = {
 
 export const faq = [
   ['Où se situe Le Tanger Résidence Hôtelière ?', "Entre mer et collines, à M'nar, à proximité du Cap Malabata. Le centre de Tanger est à environ 8 minutes en voiture."],
-  ['Quels types de logements proposez-vous ?', 'Des appartements, suites, un studio et des penthouses, avec vue mer, vue jardin ou vue piscine. Certains disposent d’une piscine privée sur terrasse.'],
+  ['Quels types de logements proposez-vous ?', 'Des appartements, suites, un studio et des penthouses, avec vue mer, vue jardin ou vue piscine. Certains disposent d’une piscine privée sur terrasse. Une chambre est adaptée aux personnes à mobilité réduite (PMR).'],
   ['La résidence dispose-t-elle de piscines ?', 'Oui, deux piscines extérieures à débordement, ainsi que des logements avec piscine privée.'],
   ['Quels sont les horaires d’arrivée et de départ ?', 'Arrivée à partir de 15h00. Départ jusqu’à 12h00.'],
   ['Y a-t-il un parking ?', 'Oui, un parking privé et gratuit, accessible aux personnes à mobilité réduite.'],

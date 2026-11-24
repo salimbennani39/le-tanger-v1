@@ -164,7 +164,7 @@ add({
   'Où se situe Le Tanger Résidence Hôtelière ?': 'Where is Le Tanger Résidence Hôtelière?',
   "Entre mer et collines, à M'nar, à proximité du Cap Malabata. Le centre de Tanger est à environ 8 minutes en voiture.": "Between sea and hills, in M'nar, near Cap Malabata. The centre of Tangier is about 8 minutes away by car.",
   'Quels types de logements proposez-vous ?': 'What types of accommodation do you offer?',
-  'Des appartements, suites, un studio et des penthouses, avec vue mer, vue jardin ou vue piscine. Certains disposent d’une piscine privée sur terrasse.': 'Apartments, suites, a studio and penthouses, with a sea, garden or pool view. Some have a private pool on the terrace.',
+  'Des appartements, suites, un studio et des penthouses, avec vue mer, vue jardin ou vue piscine. Certains disposent d’une piscine privée sur terrasse. Une chambre est adaptée aux personnes à mobilité réduite (PMR).': 'Apartments, suites, a studio and penthouses, with a sea, garden or pool view. Some have a private pool on the terrace. One room is adapted for guests with reduced mobility.',
   'La résidence dispose-t-elle de piscines ?': 'Does the residence have pools?',
   'Oui, deux piscines extérieures à débordement, ainsi que des logements avec piscine privée.': 'Yes, two outdoor infinity pools, as well as accommodation with a private pool.',
   'Quels sont les horaires d’arrivée et de départ ?': 'What are the check-in and check-out times?',

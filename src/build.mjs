@@ -787,7 +787,7 @@ page('contact.html', {
       <form class="form" data-wa="Bonjour Le Tanger, voici ma demande :">
         <label>Nom<input name="nom" data-label="Nom" required autocomplete="name"></label>
         <label>Téléphone<input name="tel" data-label="Téléphone" type="tel" autocomplete="tel"></label>
-        <label class="full">Sujet<select name="sujet" data-label="Sujet"><option>Séjour</option><option>Pool Day</option><option>Le Feu</option><option>Célébration</option><option>Événement</option><option>Autre</option></select></label>
+        <label class="full">Sujet<select name="sujet" data-label="Sujet"><option>Séjour</option><option>Pool Day</option><option>Célébration</option><option>Événement</option><option>Autre</option></select></label>
         <label>Arrivée<input name="arrivee" data-label="Arrivée" type="date"></label>
         <label>Départ<input name="depart" data-label="Départ" type="date"></label>
         <label class="full">Message<textarea name="message" data-label="Message" required></textarea></label>
