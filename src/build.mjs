@@ -517,7 +517,7 @@ ${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', 
 <section class="sec" style="padding-top:0">
   <div class="wrap">
     <div class="gal" data-gallery>
-      ${[['pool-1', 'g-wide'], ['pool-5', 'g-2'], ['pool-salon', 'g-3'], ['pool-dusk-3', 'g-3'], ['drone-pool', 'g-wide'], ['pool-2', 'g-2']].map(([n, c]) => `<button class="${c} clipin" data-full="${full(n)}" aria-label="Agrandir la photo">${img(n, 'Les piscines de Le Tanger', { sizes: '(max-width:860px) 50vw, 40vw' })}</button>`).join('')}
+      ${[['pool-1', 'g-wide'], ['pool-5', 'g-2'], ['pool-salon', 'g-2'], ['pool-dusk-3', 'g-2'], ['pool-2', 'g-2']].map(([n, c]) => `<button class="${c} clipin" data-full="${full(n)}" aria-label="Agrandir la photo">${img(n, 'Les piscines de Le Tanger', { sizes: '(max-width:860px) 50vw, 40vw' })}</button>`).join('')}
     </div>
   </div>
 </section>
