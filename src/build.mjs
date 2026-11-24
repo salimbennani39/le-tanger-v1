@@ -508,6 +508,7 @@ ${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', 
         <li>Serviette</li>
         <li>Accès de 10h00 jusqu'au coucher du soleil (<span data-sunset class="num">--:--</span> aujourd'hui)</li>
         <li>Accès au salon de pierre et au feu, sur demande</li>
+        <li>Vestiaire et douches inclus</li>
       </ul>
       <p class="note" style="margin-top:1.2rem">Boissons non incluses. Notre carte est disponible toute la journée.</p>
     </div>

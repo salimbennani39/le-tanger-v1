@@ -392,6 +392,7 @@ add({
   "Accès de 10h00 jusqu'au coucher du soleil (": 'Access from 10 am until sunset (',
   "aujourd'hui)": 'today)',
   'Accès au salon de pierre et au feu, sur demande': 'Access to the stone lounge and the fire, on request',
+  'Vestiaire et douches inclus': 'Changing room and showers included',
   'Boissons non incluses. Notre carte est disponible toute la journée.': 'Drinks not included. Our menu is available all day.',
   'Les piscines de Le Tanger': 'The pools at Le Tanger',
   'Comment': 'How',
