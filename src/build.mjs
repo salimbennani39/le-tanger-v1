@@ -570,15 +570,6 @@ ${pageHero({ media: 'feu-night-8462', alt: 'Le feu dans le salon de pierre', eye
     </div>
   </div>
 </section>
-<section class="feature">
-  <div class="feature-media">${img('feu-day-2', 'Le salon de pierre en journée', { sizes: '(max-width:860px) 100vw, 55vw', par: 0.1 })}</div>
-  <div class="feature-copy">
-    <p class="eyebrow">De jour</p>
-    <h2 class="display d-l">Le même salon, <em>à l'ombre du jardin.</em></h2>
-    <p class="lead">En journée, le salon de pierre devient un coin de lecture entre deux baignades.</p>
-    <div style="margin-top:2rem;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn-primary" href="${site.whatsapp}?text=${encodeURIComponent('Bonjour, je souhaite profiter du feu ce soir.')}" target="_blank" rel="noopener">Demander le feu</a><a class="btn btn-ghost" href="${P}pool-day.html">Pool Day</a></div>
-  </div>
-</section>
 ${closing()}`,
 });
 

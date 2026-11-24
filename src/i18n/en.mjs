@@ -366,13 +366,6 @@ add({
   'À la carte': 'À la carte',
   'Thé, café et pâtisseries marocaines': 'Tea, coffee and Moroccan pastries',
   'Le salon de pierre et son feu': 'The stone lounge and its fire',
-  'Le salon de pierre en journée': 'The stone lounge by day',
-  'De jour': 'By day',
-  'Le même salon,': 'The same lounge,',
-  "à l'ombre du jardin.": 'in the shade of the garden.',
-  'En journée, le salon de pierre devient un coin de lecture entre deux baignades.': 'By day, the stone lounge becomes a reading corner between swims.',
-  'Bonjour, je souhaite profiter du feu ce soir.': 'Hello, I would like to enjoy the fire this evening.',
-  'Demander le feu': 'Ask for the fire',
 });
 
 /* ---------- pool day and bar ---------- */
@@ -427,7 +420,6 @@ add({
   'Eau': 'Water',
   'Eau pétillante': 'Sparkling water',
   'Eau plate': 'Still water',
-  'Bonjour, je souhaite commander :': 'Hello, I would like to order:',
   'Le salon de pierre près de la piscine': 'The stone lounge by the pool',
   'Après la baignade': 'After your swim',
   'Le feu,': 'The fire,',
