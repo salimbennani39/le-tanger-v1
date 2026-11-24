@@ -427,7 +427,6 @@ add({
   'Eau pétillante': 'Sparkling water',
   'Eau plate': 'Still water',
   'Bonjour, je souhaite commander :': 'Hello, I would like to order:',
-  'Commander sur WhatsApp': 'Order on WhatsApp',
   'Le salon de pierre près de la piscine': 'The stone lounge by the pool',
   'Après la baignade': 'After your swim',
   'Le feu,': 'The fire,',

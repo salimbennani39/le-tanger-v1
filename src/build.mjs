@@ -206,7 +206,6 @@ const barSection = () => `
       <div><h3>Boissons froides</h3><ul>${drinks.froides.map(li).join('')}</ul><h3 style="margin-top:2.4rem">Milkshakes</h3><ul>${drinks.shakes.map(([n, p]) => li([n, p])).join('')}</ul></div>
       <div><h3>Snacks</h3><ul>${drinks.snacks.map(li).join('')}</ul><h3 style="margin-top:2.4rem">Eau</h3><ul>${drinks.eau.map(li).join('')}</ul></div>
     </div>
-    <div style="margin-top:3rem"><a class="btn btn-primary" href="${site.whatsapp}?text=${encodeURIComponent('Bonjour, je souhaite commander :')}" target="_blank" rel="noopener">Commander sur WhatsApp</a></div>
   </div>
 </section>`;
 
