@@ -96,7 +96,7 @@ export const rooms = [
     cover: 'suitepool-salon', hover: 'suitepool-palms',
     title: 'Suite', sub: 'Piscine privée',
     tags: ['piscine', 'couple'],
-    surface: 85, beds: '1 lit double', sofaBed: true, baths: 1, guests: '1 à 2',
+    surface: 70, beds: '1 lit double', sofaBed: true, baths: 1, guests: '1 à 2',
     hook: 'Pensée pour deux : une terrasse ensoleillée, la mer au loin et votre propre piscine.',
     body: [
       "Une escapade romantique dans une suite élégante avec piscine privée. Conçue pour les couples, elle séduit par sa terrasse ensoleillée avec vue sur mer, son design raffiné et son ambiance intimiste.",
