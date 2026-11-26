@@ -937,3 +937,13 @@ writeFileSync(join(ROOT, 'evenements.html'), '<!doctype html><meta charset="utf-
 
 /* old penthouse URLs (bloc) keep working */
 for (const n of [2, 3]) writeFileSync(join(ROOT, `residences/penthouse-piscine-privee-bloc-${n}.html`), `<!doctype html><meta charset="utf-8"><title>Penthouse · Le Tanger</title><meta http-equiv="refresh" content="0; url=penthouse-piscine-privee-pavillon-${n}.html"><link rel="canonical" href="penthouse-piscine-privee-pavillon-${n}.html"><a href="penthouse-piscine-privee-pavillon-${n}.html">Penthouse piscine privée · Pavillon ${n}</a>`);
+
+/* sitemap.xml and robots.txt for search engines */
+const today = new Date().toISOString().slice(0, 10);
+const loc = (l, path) => `https://letanger.com/${l.dir}${path === 'index.html' ? '' : path}`;
+writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${pages.flatMap(p => LANGS.map(l => `<url><loc>${loc(l, p.path)}</loc><lastmod>${today}</lastmod>${LANGS.map(a => `<xhtml:link rel="alternate" hreflang="${a.code}" href="${loc(a, p.path)}"/>`).join('')}</url>`)).join('\n')}
+</urlset>
+`);
+writeFileSync(join(ROOT, 'robots.txt'), 'User-agent: *\nAllow: /\n\nSitemap: https://letanger.com/sitemap.xml\n');
