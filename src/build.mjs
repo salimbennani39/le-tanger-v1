@@ -361,7 +361,7 @@ ${phonesSection()}
 ${conciergeTeaser()}
 <section class="sec" data-tone-section="dusk">
   <div class="wrap">
-    <div class="split-head"><div><p class="eyebrow rv">Vos moments</p><h2 class="display d-l rv rv-d1">Pour les jours <em>qui comptent.</em></h2></div><p class="lead rv rv-d2">Un anniversaire, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower.</p></div>
+    <div class="split-head"><div><p class="eyebrow rv">Vos moments</p><h2 class="display d-l rv rv-d1">Pour les jours <em>qui comptent.</em></h2></div><p class="lead rv rv-d2">Un anniversaire, une demande en mariage, une nuit de noces, une Saint-Valentin. Une baby shower, une bridal shower.</p></div>
     <div class="duo">
       <a href="${P}celebrations.html#celebrations" class="rv"><div class="frame">${img('celebration-balloons', 'Ballons sur la piscine au coucher du soleil', { sizes: '(max-width:860px) 100vw, 50vw' })}</div><h3>Célébrations</h3><p class="muted">Nous décorons votre chambre pour l'occasion.</p></a>
       <a href="${P}celebrations.html#evenements" class="rv rv-d2 duo-b"><div class="frame">${img('ph2-2', 'Salon lumineux d’un penthouse', { sizes: '(max-width:860px) 100vw, 50vw' })}</div><h3>Événements</h3><p class="muted">Baby shower, bridal shower.</p></a>
@@ -587,6 +587,7 @@ const li = ([n, p, d]) => `<li><span>${n}${d ? `<span class="desc">${d}</span>` 
 const occasions = [
   ['Anniversaire', 'Une année de plus, à fêter face à la mer. Ballons, gâteau et bougies vous attendent à votre arrivée.', 'celebration-balloons', 'deco-red', 'call'],
   ['Saint-Valentin', 'Une nuit à deux face à la mer, une chambre décorée pour l’occasion.', 'deco-valentin', 'suitepool-palms', 'call'],
+  ['Demande en mariage', 'Le moment de poser la question, face à la mer. Fleurs, bougies et pétales de roses, préparés en toute discrétion.', 'hero-pool-sunset', 'suitepool-1', 'call'],
   ['Nuit de noces', 'La première nuit, dans une suite ou un penthouse, décorée pour vous accueillir.', 'deco-pink', 'penthouse-1', 'call'],
   ['Baby shower', 'Un après-midi doux pour célébrer l’arrivée du bébé, entre amis et en famille, dans l’un de nos appartements.', 'ph2-2', 'apt2-4', 'Nous écrire'],
   ['Bridal shower', 'Avant le grand jour, une fête entre amis dans un appartement lumineux, avec vue sur la mer.', 'penthouse-salon', 'apt2-1', 'Nous écrire'],
@@ -599,19 +600,19 @@ const occasionRow = ([t, d, a, b, cta]) => `<article class="ritem" id="${t.toLow
       </article>`;
 
 page('celebrations.html', {
-  title: "Anniversaire, Saint-Valentin, nuit de noces à Tanger · Le Tanger", current: 'celebrations.html', ogImg: 'deco-red',
-  desc: 'Anniversaire, Saint-Valentin, nuit de noces, baby shower, bridal shower : célébrez et réunissez vos proches à Le Tanger.',
+  title: "Anniversaire, demande en mariage, nuit de noces à Tanger · Le Tanger", current: 'celebrations.html', ogImg: 'deco-red',
+  desc: 'Anniversaire, demande en mariage, Saint-Valentin, nuit de noces, baby shower, bridal shower : célébrez et réunissez vos proches à Le Tanger.',
   body: () => `
 ${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de roses', eyebrow: 'Célébrations & événements', title: 'Pour les jours <em>qui comptent.</em>', lead: 'Une chambre décorée pour l’occasion, une fête entre amis dans un appartement. Dites-nous ce que vous préparez, nous nous occupons du reste.' })}
 <section class="sec">
   <div class="wrap">
     <div class="split-head" id="celebrations"><div><p class="eyebrow">Célébrations</p><h2 class="display d-l">Votre chambre, <em>décorée pour l’occasion.</em></h2></div><p class="lead">Fleurs, pétales de roses, bougies, ballons et gâteau. Tout est prêt à votre arrivée. Appelez-nous avec l’occasion, la date et vos envies.</p></div>
     <div class="rlist">
-      ${occasions.slice(0, 3).map(occasionRow).join('')}
+      ${occasions.slice(0, 4).map(occasionRow).join('')}
     </div>
     <div class="split-head" id="evenements" style="margin-top:clamp(110px,14vw,200px)"><div><p class="eyebrow">Événements</p><h2 class="display d-l">Réunir ceux <em>qu’on aime.</em></h2></div><p class="lead">Baby shower et bridal shower, dans nos appartements lumineux face à la mer.</p></div>
     <div class="rlist">
-      ${occasions.slice(3).map(occasionRow).join('')}
+      ${occasions.slice(4).map(occasionRow).join('')}
     </div>
   </div>
 </section>
