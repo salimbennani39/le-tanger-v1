@@ -586,8 +586,7 @@ const li = ([n, p, d]) => `<li><span>${n}${d ? `<span class="desc">${d}</span>` 
 /* CELEBRATIONS & EVENEMENTS (one page) */
 const occasions = [
   ['Anniversaire', 'Une année de plus, à fêter face à la mer. Ballons, gâteau et bougies vous attendent à votre arrivée.', 'celebration-balloons', 'deco-red', 'call'],
-  ['Saint-Valentin', 'Une nuit à deux face à la mer, une chambre décorée pour l’occasion.', 'deco-valentin', 'suitepool-palms', 'call'],
-  ['Demande en mariage', 'Le moment de poser la question, face à la mer. Fleurs, bougies et pétales de roses, préparés en toute discrétion.', 'hero-pool-sunset', 'suitepool-1', 'call'],
+  ['Saint-Valentin et demande en mariage', 'Une nuit à deux face à la mer, une chambre décorée pour l’occasion.', 'deco-valentin', 'suitepool-palms', 'call'],
   ['Nuit de noces', 'La première nuit, dans une suite ou un penthouse, décorée pour vous accueillir.', 'deco-pink', 'penthouse-1', 'call'],
   ['Baby shower', 'Un après-midi doux pour célébrer l’arrivée du bébé, entre amis et en famille, dans l’un de nos appartements.', 'ph2-2', 'apt2-4', 'Nous écrire'],
   ['Bridal shower', 'Avant le grand jour, une fête entre amis dans un appartement lumineux, avec vue sur la mer.', 'penthouse-salon', 'apt2-1', 'Nous écrire'],
@@ -608,11 +607,11 @@ ${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de ros
   <div class="wrap">
     <div class="split-head" id="celebrations"><div><p class="eyebrow">Célébrations</p><h2 class="display d-l">Votre chambre, <em>décorée pour l’occasion.</em></h2></div><p class="lead">Fleurs, pétales de roses, bougies, ballons et gâteau. Tout est prêt à votre arrivée. Appelez-nous avec l’occasion, la date et vos envies.</p></div>
     <div class="rlist">
-      ${occasions.slice(0, 4).map(occasionRow).join('')}
+      ${occasions.slice(0, 3).map(occasionRow).join('')}
     </div>
     <div class="split-head" id="evenements" style="margin-top:clamp(110px,14vw,200px)"><div><p class="eyebrow">Événements</p><h2 class="display d-l">Réunir ceux <em>qu’on aime.</em></h2></div><p class="lead">Baby shower et bridal shower, dans nos appartements lumineux face à la mer.</p></div>
     <div class="rlist">
-      ${occasions.slice(4).map(occasionRow).join('')}
+      ${occasions.slice(3).map(occasionRow).join('')}
     </div>
   </div>
 </section>
