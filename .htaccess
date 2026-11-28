@@ -3,6 +3,12 @@ Options -Indexes
 DirectoryIndex index.html
 <IfModule mod_rewrite.c>
 RewriteEngine On
+# one address only: www.letanger.com -> letanger.com
+RewriteCond %{HTTP_HOST} ^www\.letanger\.com$ [NC]
+RewriteRule ^(.*)$ https://letanger.com/$1 [R=301,L]
+# home pages live at /, /en/ and /es/ (never .../index.html)
+RewriteCond %{THE_REQUEST} \s/((?:en/|es/)?)index\.html[\s?]
+RewriteRule ^ /%1 [R=301,L]
 # source files, tools and git data are never served
 RewriteRule ^(\.git|src|tools|graphify-out)(/|$) - [F,L]
 RewriteRule ^(README\.md|BRIEF\.md|vercel\.json|\.gitignore|\.nojekyll)$ - [F,L]

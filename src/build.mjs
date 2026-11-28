@@ -67,6 +67,9 @@ const NAV = [
 const MORE = [['a-propos.html', 'Le lieu'], ['contact.html', 'Contact'], ['blog.html', 'Journal']];
 
 /* ---------- layout ---------- */
+/* home is served at / (not /index.html) */
+const cleanPath = path => path === 'index.html' ? '' : path;
+const homeHref = P => P || './';
 function layout({ path, title, desc, body, current = '', tones = false, light = false, ogImg = 'hero-pool-sunset' }) {
   const depth = path.split('/').length - 1;
   P = '../'.repeat(depth);
@@ -85,10 +88,12 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="https://letanger.com/assets/img/${ogImg}-1200.webp">
 <meta property="og:locale" content="fr_FR">
-<link rel="alternate" hreflang="fr" href="https://letanger.com/${path}">
-<link rel="alternate" hreflang="en" href="https://letanger.com/en/${path}">
-<link rel="alternate" hreflang="es" href="https://letanger.com/es/${path}">
-<link rel="alternate" hreflang="x-default" href="https://letanger.com/${path}">
+<link rel="canonical" href="https://letanger.com/__LANGDIR__${cleanPath(path)}">
+<meta property="og:url" content="https://letanger.com/__LANGDIR__${cleanPath(path)}">
+<link rel="alternate" hreflang="fr" href="https://letanger.com/${cleanPath(path)}">
+<link rel="alternate" hreflang="en" href="https://letanger.com/en/${cleanPath(path)}">
+<link rel="alternate" hreflang="es" href="https://letanger.com/es/${cleanPath(path)}">
+<link rel="alternate" hreflang="x-default" href="https://letanger.com/${cleanPath(path)}">
 <link rel="icon" href="${P}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -99,7 +104,7 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
 <a class="skip" href="#main">Aller au contenu</a>
 <header class="hdr${light ? ' on-light' : ''}">
   <div class="hdr-in">
-    <a class="logo" href="${P}index.html" aria-label="Le Tanger, accueil">${LOGO}<small>Résidence hôtelière</small></a>
+    <a class="logo" href="${homeHref(P)}" aria-label="Le Tanger, accueil">${LOGO}<small>Résidence hôtelière</small></a>
     <nav class="nav" aria-label="Navigation principale">${nav}</nav>
     <div class="hdr-right">
       <span class="sunset" title="Heure du coucher du soleil à Tanger aujourd'hui"><i></i><span class="sunset-l">Coucher du soleil</span> <span data-sunset class="num">--:--</span></span>
@@ -110,8 +115,8 @@ function layout({ path, title, desc, body, current = '', tones = false, light = 
   </div>
 </header>
 <div class="menu" role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="menu-top"><a class="logo" href="${P}index.html">${LOGO}<small>Résidence hôtelière</small></a><button class="close" aria-label="Fermer le menu">×</button></div>
-  <nav>${[['index.html', 'Accueil'], ...NAV, ...MORE].map(([h, l]) => `<a href="${P}${h}">${l}</a>`).join('')}</nav>
+  <div class="menu-top"><a class="logo" href="${homeHref(P)}">${LOGO}<small>Résidence hôtelière</small></a><button class="close" aria-label="Fermer le menu">×</button></div>
+  <nav>${[['index.html', 'Accueil'], ...NAV, ...MORE].map(([h, l]) => `<a href="${h === 'index.html' ? homeHref(P) : P + h}">${l}</a>`).join('')}</nav>
   <div class="menu-foot">${book('Réserver', 'btn btn-primary')}<a href="${site.phoneHref}">${site.phone}</a><span>Coucher du soleil ce soir à <span data-sunset>--:--</span></span><!--lang:menu--></div>
 </div>
 <main id="main">
@@ -131,7 +136,7 @@ function footer() {
   <div class="wrap">
     <div class="ftr-top">
       <div>
-        <a class="logo" href="${P}index.html">${LOGO}<small>Résidence hôtelière</small></a>
+        <a class="logo" href="${homeHref(P)}">${LOGO}<small>Résidence hôtelière</small></a>
         <p style="color:#B9A38D;margin-top:22px;max-width:34ch">Entre mer et collines, face au détroit de Gibraltar.</p>
         <div class="social">
           <a href="${site.social.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${icon.ig}</a>
@@ -909,7 +914,7 @@ const LANGS = [
 ];
 const langSwitch = (html, path, lang) => {
   const up = '../'.repeat(path.split('/').length - 1 + (lang.dir ? 1 : 0));
-  const link = (l, cls, text) => `<a${cls ? ` class="${cls}"` : ''} href="${up}${l.dir}${path}" hreflang="${l.code}" lang="${l.code}" data-lang-link aria-label="${l.label}">${text}</a>`;
+  const link = (l, cls, text) => `<a${cls ? ` class="${cls}"` : ''} href="${(up + l.dir + cleanPath(path)) || './'}" hreflang="${l.code}" lang="${l.code}" data-lang-link aria-label="${l.label}">${text}</a>`;
   const others = LANGS.filter(l => l !== lang);
   return html
     .replace('<!--lang:hdr-->', `<span class="lang">${LANGS.map(l => (l === lang ? `<span aria-current="true">${l.tag}</span>` : link(l, '', l.tag))).join('')}</span>`)
@@ -927,7 +932,7 @@ for (const p of pages) {
   for (const l of LANGS) {
     const out = join(ROOT, l.dir, p.path);
     mkdirSync(dirname(out), { recursive: true });
-    writeFileSync(out, langSwitch(l.dict ? toLang(html, l, missing[l.code]) : html, p.path, l));
+    writeFileSync(out, langSwitch(l.dict ? toLang(html, l, missing[l.code]) : html, p.path, l).replaceAll('__LANGDIR__', l.dir));
   }
 }
 for (const l of LANGS) if (missing[l.code].size) console.log(`NO ${l.name.toUpperCase()} YET (add to src/i18n/${l.code}.mjs):\n- ${[...missing[l.code]].join('\n- ')}`);
@@ -940,7 +945,7 @@ for (const n of [2, 3]) writeFileSync(join(ROOT, `residences/penthouse-piscine-p
 
 /* sitemap.xml and robots.txt for search engines */
 const today = new Date().toISOString().slice(0, 10);
-const loc = (l, path) => `https://letanger.com/${l.dir}${path === 'index.html' ? '' : path}`;
+const loc = (l, path) => `https://letanger.com/${l.dir}${cleanPath(path)}`;
 writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${pages.flatMap(p => LANGS.map(l => `<url><loc>${loc(l, p.path)}</loc><lastmod>${today}</lastmod>${LANGS.map(a => `<xhtml:link rel="alternate" hreflang="${a.code}" href="${loc(a, p.path)}"/>`).join('')}</url>`)).join('\n')}
