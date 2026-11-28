@@ -271,7 +271,7 @@ const page = (path, opts) => pages.push({ path, ...opts });
 
 /* HOME */
 page('index.html', {
-  title: 'Le Tanger · Résidence hôtelière face au détroit de Gibraltar',
+  title: "Le Tanger · Résidence hôtelière à Tanger, face au détroit",
   desc: "Appartements, suites et penthouses avec vue mer à Tanger. Deux piscines à débordement, le feu de pierre au coucher du soleil, réservation directe.",
   tones: true,
   body: () => `
@@ -389,7 +389,7 @@ ${closing()}`,
 
 /* RESIDENCES INDEX */
 page('residences.html', {
-  title: 'Nos résidences · Le Tanger', current: 'residences.html',
+  title: "Appartements et suites vue mer à Tanger · Le Tanger", current: 'residences.html',
   desc: 'Penthouses, appartements, suites et studio avec vue mer, vue jardin ou piscine privée à Tanger.',
   body: () => `
 ${pageHero({ media: 'drone-pool', alt: 'La résidence et sa piscine vues du ciel', eyebrow: 'Nos résidences', title: 'Choisissez <em>votre vue.</em>', lead: "Des appartements entièrement équipés et le service d'un hôtel : ménage quotidien, accueil attentif, deux piscines à débordement." })}
@@ -437,8 +437,8 @@ rooms.forEach((r, i) => {
   const next = rooms[(i + 1) % rooms.length], prev = rooms[(i - 1 + rooms.length) % rooms.length];
   const layoutCls = ['g-wide', 'g-2', 'g-3', 'g-3', 'g-2', 'g-2', 'g-2', 'g-wide'];
   page(`residences/${r.slug}.html`, {
-    title: `${roomPlain(r)} · Le Tanger`, current: 'residences.html', ogImg: r.imgs[0],
-    desc: `${roomPlain(r)} à Le Tanger, ${r.surface} m², ${r.guests} personnes. ${r.hook}`,
+    title: `${r.seo} · Le Tanger`, current: 'residences.html', ogImg: r.imgs[0],
+    desc: `${r.seo}, ${r.surface} m², ${r.guests} personnes. ${r.hook}`,
     body: () => `
 ${pageHero({ media: r.hero || r.imgs[0], alt: roomPlain(r), eyebrow: `<a href="${P}residences.html" style="text-decoration:none">Résidences</a> / ${r.surface} m²`, title: roomName(r), lead: r.hook })}
 <section class="sec">
@@ -491,7 +491,7 @@ ${closing(`${r.title} <em>${r.sub.toLowerCase()}.</em>`, 'Même lien de réserva
 
 /* POOL DAY */
 page('pool-day.html', {
-  title: 'Pool Day · Le Tanger', current: 'pool-day.html', ogImg: 'pool-8333',
+  title: "Pool Day à Tanger · piscine à débordement face à la mer", current: 'pool-day.html', ogImg: 'pool-8333',
   desc: 'Pool Day à Tanger : deux piscines à débordement face à la mer, de 10h au coucher du soleil, de mai à septembre. 350 MAD adulte, 200 MAD enfant.',
   body: () => `
 ${pageHero({ media: 'pool-8333', alt: 'Piscine à débordement au crépuscule', eyebrow: 'Pool Day · mai à septembre', title: 'Une journée <em>au bord de l’eau.</em>', lead: "Deux piscines à débordement face à la mer, de 10h jusqu'au coucher du soleil." })}
@@ -552,8 +552,8 @@ ${closing('Rendez-vous <em>au bord de l’eau.</em>', 'Une question sur le Pool 
 
 /* LE FEU */
 page('le-feu.html', {
-  title: 'Le Feu · Le Tanger', current: 'le-feu.html', ogImg: 'feu-night-8450',
-  desc: 'Un salon de pierre et son feu, à côté de la piscine. Allumé sur demande, toute l’année, pour les résidents et les clients du Pool Day.',
+  title: "Salon au coin du feu à Tanger · Le Tanger", current: 'le-feu.html', ogImg: 'feu-night-8450',
+  desc: "Un salon de pierre et son feu, à côté de la piscine, à Tanger. Allumé sur demande, toute l’année, pour les résidents et les clients du Pool Day.",
   body: () => `
 ${pageHero({ media: 'feu-night-8462', alt: 'Le feu dans le salon de pierre', eyebrow: 'Le Feu', title: 'Quand le soleil tombe, <em>le feu peut s’allumer.</em>', lead: 'Un salon de pierre creusé dans le jardin, à côté de la piscine. Toute l’année, sur demande.' })}
 <section class="sec ground-dark">
@@ -599,7 +599,7 @@ const occasionRow = ([t, d, a, b, cta]) => `<article class="ritem" id="${t.toLow
       </article>`;
 
 page('celebrations.html', {
-  title: 'Célébrations & événements · Le Tanger', current: 'celebrations.html', ogImg: 'deco-red',
+  title: "Anniversaire, Saint-Valentin, nuit de noces à Tanger · Le Tanger", current: 'celebrations.html', ogImg: 'deco-red',
   desc: 'Anniversaire, Saint-Valentin, nuit de noces, baby shower, bridal shower : célébrez et réunissez vos proches à Le Tanger.',
   body: () => `
 ${pageHero({ media: 'deco-red', alt: 'Salon décoré de ballons rouges et de roses', eyebrow: 'Célébrations & événements', title: 'Pour les jours <em>qui comptent.</em>', lead: 'Une chambre décorée pour l’occasion, une fête entre amis dans un appartement. Dites-nous ce que vous préparez, nous nous occupons du reste.' })}
@@ -687,7 +687,7 @@ ${closing('Venez la voir <em>à la réception.</em>', 'La collection est exposé
 
 /* CONCIERGERIE */
 page('conciergerie.html', {
-  title: 'Conciergerie · Le Tanger', current: 'conciergerie.html', ogImg: 'drone-sunset',
+  title: "Conciergerie à Tanger : transferts, excursions, restaurants", current: 'conciergerie.html', ogImg: 'drone-sunset',
   desc: 'Dîners privés, réservations de restaurants, transferts aéroport, excursions, spa et hammam : la conciergerie de Le Tanger organise votre séjour à Tanger. Service inclus.',
   body: () => `
 ${pageHero({ media: 'drone-sunset', alt: 'La résidence et le détroit au coucher du soleil', eyebrow: 'Conciergerie', title: 'Tanger, <em>on s’occupe de vous.</em>', lead: 'Une table, un chauffeur, une excursion, un dîner privé. Dites-nous ce qui vous ferait plaisir, nous l’organisons.' })}
@@ -721,7 +721,7 @@ ${closing('Votre séjour, <em>sur mesure.</em>')}`,
 /* GALERIE */
 const galleryList = ['hero-pool-sunset', 'life-01', 'penthouse-1', 'ext-dusk-palms', 'feu-night-8450', 'life-02', 'pool-1', 'drone-pool', 'suitepool-1', 'life-03', 'ext-night-palms', 'penthouse-3', 'apt1pano-1', 'drone-dusk-1', 'life-04', 'life-05', 'feu-night-8453', 'ext-entree', 'apt2-4', 'pool-salon', 'life-06', 'life-07', 'suitegarden-1', 'penthouse-4', 'ext-palms-day', 'life-08', 'pool-dusk-3', 'apt1sea-2', 'drone-sunset', 'studio-1', 'life-09', 'life-10', 'ext-lounge-1', 'feu-night-8462', 'pool-4', 'life-11', 'apt1pool-day', 'drone-sea-1', 'ext-night-palms2', 'life-12', 'pool-sunset-2'];
 page('galerie.html', {
-  title: 'Galerie · Le Tanger', current: 'galerie.html',
+  title: "Photos de la résidence à Tanger · Le Tanger", current: 'galerie.html',
   desc: 'Les résidences, les piscines, le feu et la lumière de Tanger en images.',
   body: () => `
 ${pageHero({ media: 'drone-pool-clean', alt: 'La résidence et ses piscines vues du ciel', eyebrow: 'Galerie', title: 'Voyage <em>en images.</em>', short: true })}
@@ -731,7 +731,7 @@ ${closing()}`,
 
 /* A PROPOS / LE LIEU */
 page('a-propos.html', {
-  title: 'Le lieu · Le Tanger', current: 'a-propos.html', ogImg: 'drone-dusk-1',
+  title: "Résidence hôtelière à M'nar Palm, Tanger · Le Tanger", current: 'a-propos.html', ogImg: 'drone-dusk-1',
   desc: 'Le Tanger Résidence Hôtelière : entre mer et collines, face au Cap Malabata et au détroit de Gibraltar, à 8 minutes du centre de Tanger.',
   body: () => `
 ${pageHero({ media: 'drone-dusk-1', video: 'dusk-coast.mp4', alt: 'La côte au crépuscule', eyebrow: 'Le lieu', title: 'Entre mer <em>et collines.</em>', lead: "Une résidence nichée entre les collines verdoyantes et la Méditerranée, face au Cap Malabata." })}
@@ -775,8 +775,8 @@ ${closing()}`,
 
 /* CONTACT */
 page('contact.html', {
-  title: 'Contact · Le Tanger', current: 'contact.html', light: true,
-  desc: 'Contactez Le Tanger Résidence Hôtelière par WhatsApp, téléphone ou email.',
+  title: "Contact et accès · Le Tanger, M'nar Palm, Tanger", current: 'contact.html', light: true,
+  desc: "Contactez Le Tanger Résidence Hôtelière, à M'nar Palm, Tanger, par WhatsApp, téléphone ou email. Adresse et plan d'accès.",
   body: () => `
 <section class="sec" style="padding-top:clamp(140px,16vw,220px)">
   <div class="wrap contact-grid">

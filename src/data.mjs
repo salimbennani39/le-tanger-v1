@@ -38,7 +38,7 @@ export const rooms = [
   {
     slug: 'penthouse-piscine-privee-pavillon-3',
     hover: 'penthouse-salon',
-    title: 'Penthouse', sub: 'Piscine privée · Pavillon 3',
+    title: 'Penthouse', sub: 'Piscine privée · Pavillon 3', seo: "Penthouse avec piscine privée à Tanger, pavillon 3",
     tags: ['piscine', 'mer', 'famille'],
     surface: 120, beds: '1 lit double + 2 lits simples', sofaBed: true, baths: 2, guests: '4 à 6',
     hook: 'Le joyau de la résidence : une piscine suspendue et une terrasse plein ciel face à la Méditerranée.',
@@ -52,7 +52,7 @@ export const rooms = [
   {
     slug: 'penthouse-piscine-privee-pavillon-2',
     cover: 'ph2-2', hover: 'ph2-1',
-    title: 'Penthouse', sub: 'Piscine privée · Pavillon 2',
+    title: 'Penthouse', sub: 'Piscine privée · Pavillon 2', seo: "Penthouse avec piscine privée à Tanger, pavillon 2",
     tags: ['piscine', 'mer', 'famille'],
     surface: 120, beds: '1 lit double + 2 lits simples', sofaBed: true, baths: 2, guests: '4 à 6',
     hook: 'Une terrasse plein ciel, sa piscine privée et la Méditerranée à l’horizon.',
@@ -66,7 +66,7 @@ export const rooms = [
   {
     slug: 'appartement-2-chambres-vue-mer-panoramique',
     cover: 'apt2-salon', hover: 'apt2-1',
-    title: 'Appartement 2 chambres', sub: 'Vue mer panoramique',
+    title: 'Appartement 2 chambres', sub: 'Vue mer panoramique', seo: "Appartement 2 chambres vue mer panoramique à Tanger",
     tags: ['mer', 'famille'],
     surface: 100, beds: '1 lit double + 2 lits simples', baths: 1, guests: '3 à 4',
     hook: "Un appartement d'angle, une vue à 180° sur la Méditerranée et le lever du soleil sur la mer.",
@@ -80,7 +80,7 @@ export const rooms = [
   {
     slug: 'appartement-1-chambre-piscine-privee',
     cover: 'apt1pool-day', hover: 'penthouse-2',
-    title: 'Appartement 1 chambre', sub: 'Piscine privée',
+    title: 'Appartement 1 chambre', sub: 'Piscine privée', seo: "Appartement 1 chambre avec piscine privée à Tanger",
     tags: ['piscine', 'jardin'],
     surface: 85, beds: '1 lit double / 2 lits simples', baths: 1, guests: '2',
     hook: 'En rez-de-jardin, de larges baies vitrées et un accès direct à votre piscine privée.',
@@ -94,7 +94,7 @@ export const rooms = [
   {
     slug: 'suite-piscine-privee',
     cover: 'suitepool-salon', hover: 'suitepool-palms',
-    title: 'Suite', sub: 'Piscine privée',
+    title: 'Suite', sub: 'Piscine privée', seo: "Suite avec piscine privée à Tanger",
     tags: ['piscine', 'couple'],
     surface: 70, beds: '1 lit double', sofaBed: true, baths: 1, guests: '1 à 2',
     hook: 'Pensée pour deux : une terrasse ensoleillée, la mer au loin et votre propre piscine.',
@@ -109,7 +109,7 @@ export const rooms = [
   {
     slug: 'appartement-1-chambre-vue-mer-panoramique',
     cover: 'apt1pano-salon', hover: 'apt1pano-1',
-    title: 'Appartement 1 chambre', sub: 'Vue mer panoramique',
+    title: 'Appartement 1 chambre', sub: 'Vue mer panoramique', seo: "Appartement 1 chambre vue mer panoramique à Tanger",
     tags: ['mer', 'couple'],
     surface: 70, beds: '1 lit double ou 2 lits simples', baths: 1, guests: '2',
     hook: 'Une terrasse ensoleillée et un accès direct à la piscine à débordement.',
@@ -122,7 +122,7 @@ export const rooms = [
   },
   {
     slug: 'appartement-1-chambre-vue-mer',
-    title: 'Appartement 1 chambre', sub: 'Vue mer',
+    title: 'Appartement 1 chambre', sub: 'Vue mer', seo: "Appartement 1 chambre vue mer à Tanger",
     tags: ['mer'],
     surface: 35, beds: '2 lits simples', baths: 1, guests: '1 à 2',
     hook: "Une terrasse face à l'horizon, un intérieur lumineux et contemporain.",
@@ -137,7 +137,7 @@ export const rooms = [
   {
     slug: 'suite-vue-jardin',
     cover: 'suitegarden-3', hover: 'suitegarden-1',
-    title: 'Suite', sub: 'Vue jardin',
+    title: 'Suite', sub: 'Vue jardin', seo: "Suite vue jardin à Tanger",
     tags: ['jardin', 'couple'],
     surface: 35, beds: '1 lit double', sofaBed: true, baths: 1, guests: '2 à 3',
     hook: 'Nichée dans la verdure, une terrasse privative ouverte sur le jardin.',
@@ -150,7 +150,7 @@ export const rooms = [
   },
   {
     slug: 'studio-vue-piscine',
-    title: 'Studio', sub: 'Vue piscine',
+    title: 'Studio', sub: 'Vue piscine', seo: "Studio vue piscine à Tanger",
     tags: ['piscine'],
     surface: 30, beds: '2 lits simples', baths: 1, guests: '1 à 2',
     hook: 'Un studio intimiste, sa terrasse tournée vers la piscine.',

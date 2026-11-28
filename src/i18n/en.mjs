@@ -550,6 +550,9 @@ add({
 });
 
 /* room names, photo captions, page titles and descriptions */
+const SEO_FR = ["Penthouse avec piscine privée à Tanger, pavillon 3", "Penthouse avec piscine privée à Tanger, pavillon 2", "Appartement 2 chambres vue mer panoramique à Tanger", "Appartement 1 chambre avec piscine privée à Tanger", "Suite avec piscine privée à Tanger", "Appartement 1 chambre vue mer panoramique à Tanger", "Appartement 1 chambre vue mer à Tanger", "Suite vue jardin à Tanger", "Studio vue piscine à Tanger"];
+const SEO_EN = ["Penthouse with private pool in Tangier, pavilion 3", "Penthouse with private pool in Tangier, pavilion 2", "Two-bedroom apartment with panoramic sea view in Tangier", "One-bedroom apartment with private pool in Tangier", "Suite with private pool in Tangier", "One-bedroom apartment with panoramic sea view in Tangier", "One-bedroom sea-view apartment in Tangier", "Garden-view suite in Tangier", "Pool-view studio in Tangier"];
+
 const guests = { '2 personnes': '2 guests', '1 à 2 personnes': '1 to 2 guests', '2 à 3 personnes': '2 to 3 guests', '3 à 4 personnes': '3 to 4 guests', '4 à 6 personnes': '4 to 6 guests' };
 [
   ['Penthouse', 'Penthouse', 'piscine privée · pavillon 3', 'private pool · pavilion 3', 120, '4 à 6 personnes', 'Le joyau de la résidence : une piscine suspendue et une terrasse plein ciel face à la Méditerranée.', 'The jewel of the residence: a suspended pool and an open-sky terrace facing the Mediterranean.'],
@@ -561,10 +564,12 @@ const guests = { '2 personnes': '2 guests', '1 à 2 personnes': '1 to 2 guests',
   ['Appartement 1 chambre', 'One-bedroom apartment', 'vue mer', 'sea view', 35, '1 à 2 personnes', "Une terrasse face à l'horizon, un intérieur lumineux et contemporain.", 'A terrace facing the horizon, a bright and contemporary interior.'],
   ['Suite', 'Suite', 'vue jardin', 'garden view', 35, '2 à 3 personnes', 'Nichée dans la verdure, une terrasse privative ouverte sur le jardin.', 'Nestled in greenery, a private terrace opening onto the garden.'],
   ['Studio', 'Studio', 'vue piscine', 'pool view', 30, '1 à 2 personnes', 'Un studio intimiste, sa terrasse tournée vers la piscine.', 'An intimate studio, its terrace facing the pool.'],
-].forEach(([tf, te, sf, se, m2, g, hf, he]) => {
+].forEach(([tf, te, sf, se, m2, g, hf, he], i) => {
   const fr = `${tf}, ${sf}`, eng = `${te}, ${se}`;
   add({ [tf]: te, [sf]: se, [`${sf}.`]: `${se}.`, [hf]: he, [fr]: eng, [`${fr}, autre vue`]: `${eng}, another view`, [`${fr} · Le Tanger`]: `${eng} · Le Tanger`,
     [`${fr} à Le Tanger, ${m2} m², ${g}. ${hf}`]: `${eng} at Le Tanger, ${m2} m², ${guests[g]}. ${he}` });
+  const seoFr = SEO_FR[i], seo = SEO_EN[i];
+  add({ [`${seoFr} · Le Tanger`]: `${seo} · Le Tanger`, [`${seoFr}, ${m2} m², ${g}. ${hf}`]: `${seo}, ${m2} m², ${guests[g]}. ${he}` });
   for (let n = 2; n <= 12; n++) en[`${fr}, photo ${n}`] = `${eng}, photo ${n}`;
 });
 
@@ -642,6 +647,21 @@ add({
   'L’ensemble des contenus de ce site (textes, photographies, vidéos, logo) est la propriété de Le Tanger Résidence Hôtelière ou de leurs auteurs. Photographies : Fata Morgana. Toute reproduction sans autorisation préalable est interdite.': 'All content on this website (text, photographs, videos, logo) is the property of Le Tanger Résidence Hôtelière or of its authors. Photography: Fata Morgana. Any reproduction without prior permission is prohibited.',
   'Données personnelles': 'Personal data',
   'Voir notre': 'See our',
+});
+
+/* ---------- SEO page titles and descriptions (2026-11-28) ---------- */
+add({
+  "Le Tanger · Résidence hôtelière à Tanger, face au détroit": "Le Tanger · Aparthotel in Tangier facing the Strait of Gibraltar",
+  "Appartements et suites vue mer à Tanger · Le Tanger": "Sea-view apartments and suites in Tangier · Le Tanger",
+  "Pool Day à Tanger · piscine à débordement face à la mer": "Pool Day in Tangier · infinity pools facing the sea",
+  "Salon au coin du feu à Tanger · Le Tanger": "Fireside lounge in Tangier · Le Tanger",
+  "Anniversaire, Saint-Valentin, nuit de noces à Tanger · Le Tanger": "Birthdays, Valentine's Day, wedding nights in Tangier · Le Tanger",
+  "Conciergerie à Tanger : transferts, excursions, restaurants": "Concierge in Tangier: transfers, excursions, restaurants",
+  "Photos de la résidence à Tanger · Le Tanger": "Photos of the residence in Tangier · Le Tanger",
+  "Résidence hôtelière à M'nar Palm, Tanger · Le Tanger": "Aparthotel in M'nar Palm, Tangier · Le Tanger",
+  "Contact et accès · Le Tanger, M'nar Palm, Tanger": "Contact and directions · Le Tanger, M'nar Palm, Tangier",
+  "Un salon de pierre et son feu, à côté de la piscine, à Tanger. Allumé sur demande, toute l’année, pour les résidents et les clients du Pool Day.": "A stone lounge and its fire, beside the pool, in Tangier. Lit on request, all year round, for residents and Pool Day guests.",
+  "Contactez Le Tanger Résidence Hôtelière, à M'nar Palm, Tanger, par WhatsApp, téléphone ou email. Adresse et plan d'accès.": "Contact Le Tanger Résidence Hôtelière, in M'nar Palm, Tangier, by WhatsApp, phone or email. Address and map.",
 });
 
 export default en;
